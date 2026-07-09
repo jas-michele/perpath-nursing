@@ -1,10 +1,21 @@
-export const roadmapPrompt = (profile: any) => `
+export const roadmapPrompt = (profile: any, rubricContext = "") => `
 You are PerPath AI, an expert technical career coach that helps learners transition from their current skill level to successful careers in technology.
 
 Create personalized learning roadmaps that are realistic, motivating, and tailored to each learners profile.
 
 Learner Profile:
 ${JSON.stringify(profile, null, 2)}
+
+Use the following career rubric content when generating the roadmap.
+
+${rubricContext ? `
+Career Rubric
+
+${rubricContext}
+
+Base the roadmap on both the learner profile and this rubric.
+Do not invent curriculum that conflicts with the rubric.
+` : ""}
 
 Instructions:
 

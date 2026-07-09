@@ -1,14 +1,44 @@
 import openai from "../config/openai";
 import { roadmapPrompt } from "../prompts/roadmapPrompt";
 import Roadmap from "../models/Roadmap";
+import { chunkDocument } from "./chunkService";
+import { retrieveRelevantChunks } from "./ragService";
 
-export const generateRoadmap = async (profile: any) => {
+export const generateRoadmap = async (
+    profile: any,
+    rubricText?: string
+
+) => {
+    let relevantRubricContent = "";
+
+    if (rubricText) {
+        const chunks = chunkDocument(rubricText);
+
+          console.log("Total Chunks:", chunks.length);
+
+        const relevantChunks = retrieveRelevantChunks(profile, chunks);
+
+        console.log("Relevant Chunks:");
+        console.log(relevantChunks);
+    
+        relevantRubricContent = relevantChunks.join("\n\n");
+
+    }
+
+    const prompt = roadmapPrompt(profile, relevantRubricContent);
+
+   
+    
+
+ 
+   
+
     const completion = await openai.chat.completions.create({
         model: "gpt-4.1-mini",
         messages: [
             {
                 role: "system",
-                content: roadmapPrompt(profile)
+                content: roadmapPrompt(profile, relevantRubricContent),
             },
         ],
     });
