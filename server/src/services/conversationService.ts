@@ -23,6 +23,9 @@ export const saveConversation = async (
     return Conversation.findOneAndUpdate(
         { user: userId },
         { messages },
-        { new: true }
+        {
+            returnDocument: "after"
+        }
+     
     );
 };

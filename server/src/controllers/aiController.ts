@@ -3,13 +3,21 @@ import { chatWithCareerCoach } from "../services/aiService";
 import {
     getConversation,
     saveConversation 
-} from "../services/conversationService"
+} from "../services/conversationService";
+import { 
+    isProfileComplete,
+    extractProfileJSON,
+    parseProfile,
+    updateUserProfile
+ } from "../services/profileService";
 
+ 
 export const chatWithAI = async (
     req: Request,
     res: Response
 ) => {
     try {
+
         const { message } = req.body;
 
         if (!message) {
@@ -30,6 +38,16 @@ export const chatWithAI = async (
 
         const reply = await chatWithCareerCoach(conversation.messages);
 
+        const completed = isProfileComplete(reply);
+
+        if (completed) {
+            const profileJSON = extractProfileJSON(reply);
+
+            const profile = parseProfile(profileJSON);
+
+            await updateUserProfile(userId, profile);
+        }
+
         conversation.messages.push({
             role: "assistant",
             content: reply,
@@ -39,6 +57,7 @@ export const chatWithAI = async (
 
         return res.status(200).json({
             success: true,
+            completed,
             reply
         });
     } catch (error) {
