@@ -1,21 +1,22 @@
-import  { Schema, Document, model} from "mongoose";
+import { Schema, Document, model } from "mongoose";
 
 
 export interface IUser extends Document {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  trainingProvider: string;
-  campus: string;
-  program: string;
-  currentModule: string;
-  careerGoal: string;
-  weeklyStudyHours: number;
-  skills: string[];
-  projects: string[];
-  profileCompleted: boolean;
-  role: "learner" | "mentor" | "admin";
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    trainingProvider: string;
+    campus: string;
+    program: string;
+    currentModule: string;
+    careerGoal: string;
+    weeklyStudyHours: number;
+    existingSkills: string[];
+    previousProjects: string[];
+    profileCompleted: boolean;
+    intakeCompleted: boolean;
+    role: "learner" | "mentor" | "admin";
 }
 
 const userSchema = new Schema<IUser>(
@@ -52,7 +53,7 @@ const userSchema = new Schema<IUser>(
 
         campus: {
             type: String,
-            default:"",
+            default: "",
         },
 
         program: {
@@ -64,7 +65,7 @@ const userSchema = new Schema<IUser>(
             type: String,
             default: "",
         },
-        
+
         careerGoal: {
             type: String,
             default: "",
@@ -75,20 +76,34 @@ const userSchema = new Schema<IUser>(
             default: 0,
         },
 
-        skills: {
+        existingSkills: {
             type: [String],
             default: [],
         },
-         
-        projects: {
+
+        previousProjects: {
             type: [String],
             default: [],
+        },
+
+        intakeCompleted: {
+            type: Boolean,
+            default: false
         },
 
         profileCompleted: {
             type: Boolean,
             default: false,
         },
+
+        role: {
+            type: String,
+            enum: ["learner", "mentor", "admin"],
+            default: "learner",
+            required: true,
+        },
+
+
     },
     {
         timestamps: true,

@@ -3,7 +3,9 @@ import cors from  "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/mongo";
 
-import  authRoutes  from "./routes/authRoutes"
+
+import authRoutes from "./routes/authRoutes";
+import aiRoutes from "./routes/aiRoutes";
 
 dotenv.config();
 connectDB();
@@ -15,9 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-app.get("/", (req, res) => {
-    res.send("Roadmap is running")
-});
+app.use("/api/ai", aiRoutes);
 
 app.listen(PORT, () => {
     console.log(`Running on localhost: ${PORT}`)
