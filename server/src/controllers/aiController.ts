@@ -40,13 +40,6 @@ export const chatWithAI = async (
 
         const completed = isProfileComplete(reply);
 
-        if (completed) {
-            const profileJSON = extractProfileJSON(reply);
-
-            const profile = parseProfile(profileJSON);
-
-            await updateUserProfile(userId, profile);
-        }
 
         conversation.messages.push({
             role: "assistant",
@@ -55,10 +48,21 @@ export const chatWithAI = async (
 
         await saveConversation(userId, conversation.messages);
 
+
+        if (completed) {
+            const profileJSON = extractProfileJSON(reply);
+
+            const profile = parseProfile(profileJSON);
+
+            await updateUserProfile(userId, profile);
+        }
+
         return res.status(200).json({
             success: true,
             completed,
-            reply
+            message: completed
+                ? "Career assessment completed successfully."
+                : reply,    
         });
     } catch (error) {
         console.error(error);
