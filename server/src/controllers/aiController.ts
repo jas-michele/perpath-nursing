@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { chatWithCareerCoach } from "../services/aiService";
-import { success } from "zod";
+import {
+    getConversation,
+    saveConversation 
+} from "../services/conversationService"
 
 export const chatWithAI = async (
     req: Request,
@@ -16,12 +19,23 @@ export const chatWithAI = async (
             })
         }
 
-        const reply = await chatWithCareerCoach([
-            {
-                role: "user",
-                content: message,
-            }
-        ]);
+        const userId = (req as any).user.id;
+
+        const conversation = await getConversation(userId);
+
+        conversation.messages.push({
+            role: "user",
+            content: message,
+        })
+
+        const reply = await chatWithCareerCoach(conversation.messages);
+
+        conversation.messages.push({
+            role: "assistant",
+            content: reply,
+        })
+
+        await saveConversation(userId, conversation.messages);
 
         return res.status(200).json({
             success: true,
