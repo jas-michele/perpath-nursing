@@ -2,25 +2,49 @@ import { Schema, Document, model } from "mongoose";
 
 
 export interface IUser extends Document {
+    // Authenticatio
     firstName: string;
     lastName: string;
     email: string;
     password: string;
+    role: "learner" | "alumni" | "mentor" | "admin";
+
+    // Status
+    profileCompleted: boolean;
+    intakeCompleted: boolean;
+
+    // Learning Profile
     trainingProvider: string;
     campus: string;
     program: string;
     currentModule: string;
     careerGoal: string;
     weeklyStudyHours: number;
-    existingSkills: string[];
+
+    // Starting Point
+    experienceLevel: string;
+    currentOccupation: string;
+    educationLevel: string;
+    currentLearningStage: string;
+    biggestLearningObstacle: string;
+
+    // Technical Confidence
+    technicalConfidence: [
+        {
+            skill: string;
+            confidence: number;
+        }
+    ]
+
+    // Experience
+    technicalSkills: string[];
     previousProjects: string[];
-    profileCompleted: boolean;
-    intakeCompleted: boolean;
-    role: "learner" | "mentor" | "admin";
+
 }
 
 const userSchema = new Schema<IUser>(
     {
+        // Authentication
         firstName: {
             type: String,
             required: true,
@@ -44,6 +68,24 @@ const userSchema = new Schema<IUser>(
         password: {
             type: String,
             required: true,
+        },
+
+        role: {
+            type: String,
+            enum: ["learner", "alumni", "mentor", "admin"],
+            default: "learner",
+            required: true,
+        },
+
+        // Status
+        intakeCompleted: {
+            type: Boolean,
+            default: false
+        },
+
+        profileCompleted: {
+            type: Boolean,
+            default: false,
         },
 
         trainingProvider: {
@@ -76,7 +118,53 @@ const userSchema = new Schema<IUser>(
             default: 0,
         },
 
-        existingSkills: {
+        // Starting Point
+        experienceLevel: {
+            type: String,
+            default: "",
+        },
+
+        currentOccupation: {
+            type: String,
+            default: "",
+        },
+
+        educationLevel: {
+            type: String,
+            default: "",
+        },
+
+        currentLearningStage: {
+            type: String,
+            default: "",
+        },
+
+        biggestLearningObstacle: {
+            type: String,
+            default: "",
+        },
+
+        // Technical Confidence
+        technicalConfidence: {
+            type: [
+                {
+                    skill: {
+                        type: String,
+                        required: true
+                    },
+                    confidence: {
+                        type: Number,
+                        min: 0,
+                        max: 5,
+                        required: true,
+                    },
+                },
+            ],
+
+            default: [],
+        },
+
+        technicalSkills: {
             type: [String],
             default: [],
         },
@@ -86,22 +174,7 @@ const userSchema = new Schema<IUser>(
             default: [],
         },
 
-        intakeCompleted: {
-            type: Boolean,
-            default: false
-        },
 
-        profileCompleted: {
-            type: Boolean,
-            default: false,
-        },
-
-        role: {
-            type: String,
-            enum: ["learner", "mentor", "admin"],
-            default: "learner",
-            required: true,
-        },
 
 
     },
@@ -110,6 +183,6 @@ const userSchema = new Schema<IUser>(
     }
 );
 
-const User = model("User", userSchema);
+const User = model<IUser>("User", userSchema);
 
 export default User;
