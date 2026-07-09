@@ -3,6 +3,8 @@ import cors from  "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/mongo";
 
+import  authRoutes  from "./routes/authRoutes"
+
 dotenv.config();
 connectDB();
 
@@ -12,6 +14,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => {
     res.send("Roadmap is running")
 });
