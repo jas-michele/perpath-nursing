@@ -1,5 +1,6 @@
 import openai from "../config/openai";
 import { roadmapPrompt } from "../prompts/roadmapPrompt";
+import Roadmap from "../models/Roadmap";
 
 export const generateRoadmap = async (profile: any) => {
     const completion = await openai.chat.completions.create({
@@ -19,4 +20,10 @@ export const generateRoadmap = async (profile: any) => {
     }
 
     return roadmap;
+}
+
+export const getRoadmapByUserId = async (userId: string) => {
+    return await Roadmap.findOne({
+        user: userId
+    });
 }

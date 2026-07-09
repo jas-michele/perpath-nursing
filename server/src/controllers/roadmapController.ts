@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import Roadmap from "../models/Roadmap";
 
-import { generateRoadmap } from "../services/roadmapService";
+import { generateRoadmap, getRoadmapByUserId } from "../services/roadmapService";
+import { success } from "zod";
 
 
 export const generateUserRoadmap = async (
@@ -59,4 +60,35 @@ export const generateUserRoadmap = async (
         message: "Failed to generate roadmap."
     })
 }
+}
+
+export const getRoadmap = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
+    try {
+        const userId = (req as any).user.id;
+
+        const roadmap = await getRoadmapByUserId(userId);
+
+        if (!roadmap) {
+            res.status(404).json({
+                success: false,
+                message: "Roadmap not found.",
+            });
+            return;
+        }
+
+        res.status(200).json({
+            success: true,
+            roadmap,
+        })
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to retrieve roadmap."
+        })
+    }
 }
