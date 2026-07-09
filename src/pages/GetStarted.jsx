@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./GetStarted.css";
 
 function GetStarted() {
+  const navigate = useNavigate();
+
+  const handleCreateAccount = () => {
+    navigate("/ai-coach");
+  };
+
   return (
     <div className="get-started-page">
       <div className="left-panel">
@@ -16,10 +22,10 @@ function GetStarted() {
         </p>
 
         <div className="feature-list">
-          <div className="feature-item">🚀 AI Career Roadmap</div>
+          <div className="feature-item">🧭 AI Career Roadmaps</div>
           <div className="feature-item">🤝 Mentor Matching</div>
           <div className="feature-item">💼 Employer Connections</div>
-          <div className="feature-item">📈 Career Readiness Score</div>
+          <div className="feature-item">📊 Career Readiness Score</div>
         </div>
       </div>
 
@@ -27,36 +33,27 @@ function GetStarted() {
         <h2>Create Your Account</h2>
 
         <label>First Name</label>
-        <input
-          type="text"
-          placeholder="Enter your first name"
-        />
+        <input type="text" placeholder="Enter your first name" />
 
         <label>Last Name</label>
-        <input
-          type="text"
-          placeholder="Enter your last name"
-        />
+        <input type="text" placeholder="Enter your last name" />
 
         <label>Email Address</label>
-        <input
-          type="email"
-          placeholder="Enter your email"
-        />
+        <input type="email" placeholder="Enter your email" />
 
         <label>Password</label>
-        <input
-          type="password"
-          placeholder="Create a password"
-        />
+        <input type="password" placeholder="Create a password" />
 
-        <button className="create-account-btn">
+        <button
+          type="button"
+          className="create-account-btn"
+          onClick={handleCreateAccount}
+        >
           Create Account
         </button>
 
         <p className="signin-link">
-          Already have an account?{" "}
-          <Link to="/">Sign In</Link>
+          Already have an account? <Link to="/">Sign In</Link>
         </p>
 
         <p className="back-home">
