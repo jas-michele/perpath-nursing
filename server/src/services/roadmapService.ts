@@ -14,13 +14,8 @@ export const generateRoadmap = async (
     if (rubricText) {
         const chunks = chunkDocument(rubricText);
 
-          console.log("Total Chunks:", chunks.length);
-
         const relevantChunks = retrieveRelevantChunks(profile, chunks);
-
-        console.log("Relevant Chunks:");
-        console.log(relevantChunks);
-    
+        
         relevantRubricContent = relevantChunks.join("\n\n");
 
     }
