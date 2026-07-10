@@ -1,7 +1,19 @@
 import "./CurrentMilestone.css";
-import { BookOpen, Clock, ArrowRight } from "lucide-react";
+import {  Clock, ArrowRight } from "lucide-react";
 
-function CurrentMilestone() {
+type CurrentMilestoneProps = {
+  roadmap: any;
+};
+
+
+function CurrentMilestone({
+  roadmap,
+}: CurrentMilestoneProps){
+
+    const currentMilestone =
+    roadmap.milestones.find((m: any) => !m.completed) ??
+    roadmap.milestones[0];
+
   return (
     <div className="current-panel">
 
@@ -11,10 +23,10 @@ function CurrentMilestone() {
 
       <div className="milestone-card">
 
-        <h2>React</h2>
+        <h2>{currentMilestone.title}</h2>
 
         <p className="subtitle">
-          Frontend Library
+          {currentMilestone.description}
         </p>
 
         <div className="divider"></div>

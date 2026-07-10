@@ -1,26 +1,61 @@
+import { useEffect, useState } from "react";
+
 import ProgressSidebar from "../components/sidebar/ProgressSidebar";
-import RoadmapMap from "../components/roadmap/RoadmapMap";
+import FutureVisualization from "../components/FutureVisualization/FutureVisualization";
 import CurrentMilestone from "../components/sidebar/CurrentMilestone";
 import BottomStatusBar from "../components/dashboard/BottomStatusBar";
 
-function FutureDashboard() {
-    return (
-        <div className="future-dashboard">
+import { getRoadmap } from "../services/roadmapService";
 
-        <aside className="left-panel">
-            <ProgressSidebar />
-        </aside>
+import "../styles/FutureDashboard.css";
 
-        <main className="center-panel">
-            <RoadmapMap />
-        </main>
+export default function FutureDashboard() {
+  const [roadmap, setRoadmap] = useState<any>(null);
 
-        <aside className="right-panel">
-            <CurrentMilestone />
-        </aside>    
+  useEffect(() => {
+    async function loadRoadmap() {
+      try {
+        const data = await getRoadmap();
+        setRoadmap(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-        </div>
-    );
+    loadRoadmap();
+  }, []);
+
+  if (!roadmap) {
+    return <div>Loading Dashboard...</div>;
+  }
+
+  const user = {
+    name: "Jasmine", // we'll replace this from MongoDB next
+    careerGoal: roadmap.careerGoal,
+  };
+
+  return (
+    <div className="future-dashboard">
+
+      <aside className="left-panel">
+        <ProgressSidebar
+          user={user}
+          roadmap={roadmap}
+        />
+      </aside>
+
+      <main className="center-panel">
+        <FutureVisualization roadmap={roadmap}/>
+      </main>
+
+      <aside className="right-panel">
+        <CurrentMilestone roadmap={roadmap}/>
+      </aside>
+
+      <footer className="bottom-panel">
+        <BottomStatusBar />
+      </footer>
+
+    </div>
+  );
 }
-
-export default FutureDashboard;

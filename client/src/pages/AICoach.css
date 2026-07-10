@@ -499,6 +499,7 @@
     }
   
     .chat-input-area {
+      display: flex;
       flex-direction: column;
     }
   
@@ -523,3 +524,54 @@
       height: 200px;
     }
   }
+
+  .upload-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:10px;
+
+}
+
+.upload-button{
+
+    padding:8px 14px;
+
+    border-radius:10px;
+
+    background:#0f172a;
+
+    border:1px solid #38bdf8;
+
+    color:#38bdf8;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.upload-button:hover{
+
+    background:#38bdf8;
+
+    color:black;
+
+}
+
+.file-name{
+
+    font-size:12px;
+
+    color:#8ecfff;
+
+}
+
+.upload-button.disabled {
+    opacity: .6;
+    pointer-events: none;
+}

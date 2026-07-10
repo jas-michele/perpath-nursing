@@ -1,7 +1,34 @@
 import "./ProgressSidebar.css";
 import { User, Target, Clock } from "lucide-react";
 
-function ProgressSidebar() {
+type ProgressSidebarProps = {
+  user: {
+    name: string;
+    careerGoal: string;
+  };
+  roadmap: {
+    estimatedDuration: string;
+    milestones: {
+      completed: boolean;
+    }[];
+  };
+};
+
+function ProgressSidebar({
+  user,
+  roadmap,
+}: ProgressSidebarProps) {
+  const completed = roadmap.milestones.filter(
+    (m) => m.completed
+  ).length;
+
+  const total = roadmap.milestones.length;
+
+  const progress =
+    total === 0
+      ? 0
+      : Math.round((completed / total) * 100);
+
   return (
     <div className="progress-sidebar">
 
@@ -11,10 +38,10 @@ function ProgressSidebar() {
           <User size={60} />
         </div>
 
-        <h2>Jasmine</h2>
+        <h2>{user.name}</h2>
 
         <p className="career-goal">
-          AI Software Engineer
+          {user.careerGoal}
         </p>
 
       </div>
@@ -24,10 +51,12 @@ function ProgressSidebar() {
         <h3>Progress</h3>
 
         <div className="progress-ring">
-          <span>35%</span>
+          <span>{progress}%</span>
         </div>
 
-        <p>3 / 9 Milestones</p>
+        <p>
+          {completed} / {total} Milestones
+        </p>
 
       </div>
 
@@ -35,12 +64,12 @@ function ProgressSidebar() {
 
         <div className="stat">
           <Target size={18} />
-          <span>Goal: SWE</span>
+          <span>Goal: {user.careerGoal}</span>
         </div>
 
         <div className="stat">
           <Clock size={18} />
-          <span>8 Months</span>
+          <span>{roadmap.estimatedDuration}</span>
         </div>
 
       </div>
