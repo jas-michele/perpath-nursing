@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { startConversation, sendMessage, generateRoadmapWithRubric } from "../services/aiCoachService";
+import { startConversation, sendMessage, generateRoadmap } from "../services/aiCoachService";
+import { Link, useNavigate } from "react-router-dom";
 import "./AICoach.css";
 
 
@@ -14,6 +15,8 @@ function AICoach() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uiState, setUiState] = useState("interview");
+
+  const navigate = useNavigate();
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -92,12 +95,12 @@ function AICoach() {
       console.error(error);
     }
   }
-  const handleRubricUpload = async (file: File) => {
+  const handleGenerateRoadmap = async (file?: File) => {
     try {
       setUploading(true);
       setUiState("generating");
 
-      await generateRoadmapWithRubric(file);
+      await generateRoadmap(file);
 
       setMessages((prev) => [
         ...prev,
@@ -107,8 +110,8 @@ function AICoach() {
         },
       ]);
 
-      // Next step we'll replace this with React Router
-      // navigate("/dashboard");
+
+      navigate("/dashboard");
 
     } catch (error) {
       console.error(error);
@@ -126,7 +129,6 @@ function AICoach() {
       setUploading(false);
     }
   };
-
 
   return (
   <div className="ai-coach-page">
@@ -178,10 +180,17 @@ function AICoach() {
             {uiState === "upload" && (
               <div className="upload-section">
 
+                <h3>Generate Your Career Roadmap</h3>
+
+                <p>
+                  Upload your curriculum for the most personalized roadmap,
+                  or generate one using your AI profile.
+                </p>
+
                 <label
                   className={`upload-button ${uploading ? "disabled" : ""}`}
                 >
-                  📄 Upload Rubric
+                  📄 Generate with Curriculum
 
                   <input
                     type="file"
@@ -194,7 +203,7 @@ function AICoach() {
 
                       setSelectedFile(file);
 
-                      await handleRubricUpload(file);
+                      await handleGenerateRoadmap(file);
                     }}
                   />
                 </label>
@@ -205,9 +214,20 @@ function AICoach() {
                   </span>
                 )}
 
+                <div className="upload-divider">
+                  OR
+                </div>
+
+                <button
+                  className="generate-profile-button"
+                  disabled={uploading}
+                  onClick={() => handleGenerateRoadmap()}
+                >
+                  ✨ Generate from AI Profile
+                </button>
+
               </div>
             )}
-
           </div>
         </div>
 
@@ -337,5 +357,5 @@ function AICoach() {
   </div>
 );
 }
-
-export default AICoach
+  
+        export default AICoach;

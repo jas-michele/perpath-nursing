@@ -3,10 +3,12 @@ import { User, Target, Clock } from "lucide-react";
 
 type ProgressSidebarProps = {
   user: {
-    name: string;
-    careerGoal: string;
+    firstName: string;
+    lastName: string;
+    careerGoal?: string;
   };
   roadmap: {
+    careerGoal: string
     estimatedDuration: string;
     milestones: {
       completed: boolean;
@@ -38,10 +40,10 @@ function ProgressSidebar({
           <User size={60} />
         </div>
 
-        <h2>{user.name}</h2>
+        <h2>{user.firstName ?? "learner"}</h2>
 
         <p className="career-goal">
-          {user.careerGoal}
+          {roadmap.careerGoal}
         </p>
 
       </div>
@@ -64,7 +66,7 @@ function ProgressSidebar({
 
         <div className="stat">
           <Target size={18} />
-          <span>Goal: {user.careerGoal}</span>
+          <span>Goal: {roadmap.careerGoal}</span>
         </div>
 
         <div className="stat">

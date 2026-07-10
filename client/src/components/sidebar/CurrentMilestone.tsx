@@ -1,5 +1,5 @@
 import "./CurrentMilestone.css";
-import {  Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight } from "lucide-react";
 
 type CurrentMilestoneProps = {
   roadmap: any;
@@ -8,11 +8,20 @@ type CurrentMilestoneProps = {
 
 function CurrentMilestone({
   roadmap,
-}: CurrentMilestoneProps){
+}: CurrentMilestoneProps) {
 
-    const currentMilestone =
+  if (!roadmap?.milestones?.length) {
+    return null;
+  }
+
+  const currentMilestone =
     roadmap.milestones.find((m: any) => !m.completed) ??
     roadmap.milestones[0];
+
+  const currentIndex = roadmap.milestones.indexOf(currentMilestone);
+
+  const nextMilestone =
+    roadmap.milestones[currentIndex + 1];
 
   return (
     <div className="current-panel">
@@ -33,24 +42,26 @@ function CurrentMilestone({
 
         <h4>Key Topics</h4>
 
-        <ul>
-          <li>Components</li>
-          <li>Props</li>
-          <li>State</li>
-          <li>Hooks</li>
-          <li>Context API</li>
-        </ul>
+      
 
         <div className="info-row">
-          <Clock size={18}/>
-          <span>Estimated: 1 Week</span>
+          <Clock size={18} />
+          <span>Estimated: {roadmap.estimatedDuration}
+          </span>
         </div>
 
         <div className="divider"></div>
 
         <div className="next-up">
-          <ArrowRight size={18}/>
-          <span>Next: Node.js</span>
+          <ArrowRight size={18} />
+          <span>
+            <div className="next-up">
+              <ArrowRight size={18} />
+              <span>
+                Next: {nextMilestone?.title ?? "Complete roadmap"}
+              </span>
+            </div>
+          </span>
         </div>
 
       </div>

@@ -39,7 +39,7 @@ export default function FutureVisualization({
         fitView
       >
         <Background />
-        <MiniMap />
+        {/* <MiniMap /> */}
         <Controls />
       </ReactFlow>
     </div>

@@ -6,17 +6,24 @@ import CurrentMilestone from "../components/sidebar/CurrentMilestone";
 import BottomStatusBar from "../components/dashboard/BottomStatusBar";
 
 import { getRoadmap } from "../services/roadmapService";
+import { getCurrentUser } from "../services/authService";
 
 import "../styles/FutureDashboard.css";
 
 export default function FutureDashboard() {
   const [roadmap, setRoadmap] = useState<any>(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     async function loadRoadmap() {
       try {
-        const data = await getRoadmap();
-        setRoadmap(data);
+        const [roadmapData, userData] = await Promise.all([
+          getRoadmap(),
+          getCurrentUser(),
+        ]);
+
+        setRoadmap(roadmapData);
+        setUser(userData);
       } catch (error) {
         console.error(error);
       }
@@ -29,10 +36,7 @@ export default function FutureDashboard() {
     return <div>Loading Dashboard...</div>;
   }
 
-  const user = {
-    name: "Jasmine", // we'll replace this from MongoDB next
-    careerGoal: roadmap.careerGoal,
-  };
+
 
   return (
     <div className="future-dashboard">
@@ -45,11 +49,11 @@ export default function FutureDashboard() {
       </aside>
 
       <main className="center-panel">
-        <FutureVisualization roadmap={roadmap}/>
+        <FutureVisualization roadmap={roadmap} />
       </main>
 
       <aside className="right-panel">
-        <CurrentMilestone roadmap={roadmap}/>
+        <CurrentMilestone roadmap={roadmap} />
       </aside>
 
       <footer className="bottom-panel">
