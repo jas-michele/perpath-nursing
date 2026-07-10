@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import nebula from "../assets/space/nebula.png"
 
 import ProgressSidebar from "../components/sidebar/ProgressSidebar";
 import FutureVisualization from "../components/FutureVisualization/FutureVisualization";
@@ -7,6 +8,10 @@ import BottomStatusBar from "../components/dashboard/BottomStatusBar";
 
 import { getRoadmap } from "../services/roadmapService";
 import { getCurrentUser } from "../services/authService";
+
+// import aiCore from "../assets/space/ai-core.png";
+import planet from "../assets/space/planet.png"
+import moon from "../assets/space/moon.png";
 
 import "../styles/FutureDashboard.css";
 
@@ -49,7 +54,23 @@ export default function FutureDashboard() {
       </aside>
 
       <main className="center-panel">
-        <FutureVisualization roadmap={roadmap} />
+        {/* <img
+          src={planet}
+          className="space-planet"
+          alt=""
+          aria-hidden="true"
+        /> */}
+
+        <img
+          src={moon}
+          className="space-moon"
+          alt=""
+          aria-hidden="true"
+        />
+
+        
+          <FutureVisualization roadmap={roadmap} />
+        
       </main>
 
       <aside className="right-panel">

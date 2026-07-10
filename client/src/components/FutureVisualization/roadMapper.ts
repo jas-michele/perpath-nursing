@@ -33,7 +33,7 @@ export function mapRoadmapToFlow(roadmap: any) {
             status = "current";
         }
 
-        const x = index % 2 === 0 ? 120 : 420;
+        const x = index % 2 === 0 ? 150 : 500;
 
         nodes.push({
             id,
