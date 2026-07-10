@@ -14,8 +14,8 @@
   transition: all .25s ease;
 
   box-shadow:
-    0 0 18px rgba(0,180,255,.18),
-    inset 0 0 12px rgba(0,180,255,.06);
+    0 0 18px rgba(0, 180, 255, .18),
+    inset 0 0 12px rgba(0, 180, 255, .06);
 }
 
 .milestone-node:hover {
@@ -28,94 +28,136 @@
   border-color: #2ecc71;
 
   box-shadow:
-    0 0 24px rgba(46,204,113,.35);
+    0 0 24px rgba(46, 204, 113, .35);
 }
 
-.milestone-node.current {
+/* .milestone-node.current {
   border-color: #3da9fc;
 
   box-shadow:
     0 0 30px rgba(61,169,252,.65);
 
   animation: pulse 2.5s infinite;
+} */
+
+@keyframes aiPulse {
+
+  0%,
+  100% {
+
+    transform: scale(1);
+
+    box-shadow:
+      0 0 18px rgba(67, 213, 255, .55),
+      0 0 40px rgba(67, 213, 255, .22),
+      inset 0 0 18px rgba(67, 213, 255, .10);
+  }
+
+  50% {
+
+    transform: scale(1.025);
+
+    box-shadow:
+      0 0 30px rgba(67, 213, 255, .9),
+      0 0 70px rgba(67, 213, 255, .45),
+      inset 0 0 24px rgba(67, 213, 255, .18);
+  }
 }
 
 .milestone-node.future {
-  border-color: rgba(255,255,255,.18);
+  border-color: rgba(255, 255, 255, .18);
 
   opacity: .85;
 }
 
 /* ---------- HEADER ---------- */
 
-.node-header{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-  margin-bottom:12px;
+  margin-bottom: 12px;
 }
 
-.node-icon{
-  font-size:28px;
+.node-icon {
+  font-size: 28px;
 }
 
-.node-title{
-  font-size:18px;
-  font-weight:700;
-  line-height:1.2;
+.node-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 /* ---------- DESCRIPTION ---------- */
 
-.node-description{
-  color:#cfd8e3;
+.node-description {
+  color: #cfd8e3;
 
-  font-size:14px;
+  font-size: 14px;
 
-  line-height:1.5;
+  line-height: 1.5;
 
-  margin-bottom:14px;
+  margin-bottom: 14px;
 }
 
 /* ---------- DURATION ---------- */
 
-.node-duration{
+.node-duration {
 
-  color:#ffd166;
+  color: #ffd166;
 
-  font-size:13px;
+  font-size: 13px;
 
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 /* ---------- PROGRESS ---------- */
 
-.node-progress{
+.node-progress {
 
-  margin-top:10px;
+  margin-top: 10px;
 
-  color:#6fd8ff;
+  color: #6fd8ff;
 
-  font-size:13px;
+  font-size: 13px;
 
-  font-weight:600;
+  font-weight: 600;
 }
 
 /* ---------- ANIMATION ---------- */
 
 @keyframes pulse {
 
-  0%{
-    box-shadow:0 0 18px rgba(61,169,252,.35);
+  0% {
+    box-shadow: 0 0 18px rgba(61, 169, 252, .35);
   }
 
-  50%{
-    box-shadow:0 0 36px rgba(61,169,252,.75);
+  50% {
+    box-shadow: 0 0 36px rgba(61, 169, 252, .75);
   }
 
-  100%{
-    box-shadow:0 0 18px rgba(61,169,252,.35);
+  100% {
+    box-shadow: 0 0 18px rgba(61, 169, 252, .35);
   }
 
+}
+
+.complete-button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #59d7ff;
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.complete-button:hover {
+    transform: translateY(-2px);
+    background: #7fe4ff;
 }

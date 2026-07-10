@@ -116,52 +116,72 @@
    SPACE OBJECTS
 ========================================= */
 
-.space-planet {
-    position: absolute;
+.space-planet{
 
-    width: 460px;
+    position:absolute;
 
-    left: -180px;
+    width:560px;
 
-    bottom: -180px;
+    left:-260px;
 
-    opacity: .22;
+    bottom:-260px;
 
-    pointer-events: none;
+    opacity:.28;
 
-    z-index: 1;
+    pointer-events:none;
+
+    z-index:1;
+
+    filter:
+        drop-shadow(0 0 28px rgba(0,180,255,.22));
+
+    animation: planetFloat 14s ease-in-out infinite;
 }
 
-.space-moon {
-    position: absolute;
+.space-moon{
 
-    width: 110px;
+    position:absolute;
 
-    top: 40px;
+    width:110px;
 
-    right: 55px;
+    top:28px;
 
-    opacity: .35;
+    right:28px;
 
-    pointer-events: none;
+    opacity:.55;
 
-    z-index: 2;
+    pointer-events:none;
+
+    z-index:2;
+
+    filter:
+        drop-shadow(0 0 12px #78d9ff)
+        drop-shadow(0 0 32px rgba(120,217,255,.35));
+
+    animation: moonFloat 10s ease-in-out infinite;
 }
 
-.ai-core {
-    position: absolute;
+.ai-core{
 
-    width: 280px;
+    position:absolute;
 
-    left: 50%;
+    width:340px;
 
-    top: 0;
+    left:50%;
 
-    transform: translateX(-50%);
+    top:35px;
 
-    opacity: .10;
+    transform:translateX(-50%);
 
-    pointer-events: none;
+    opacity:.16;
 
-    z-index: 2;
+    pointer-events:none;
+
+    z-index:1;
+
+    filter:
+        drop-shadow(0 0 18px rgba(90,220,255,.35))
+        drop-shadow(0 0 60px rgba(90,220,255,.18));
+
+    animation: coreFloat 8s ease-in-out infinite;
 }

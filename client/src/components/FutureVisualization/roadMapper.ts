@@ -1,6 +1,10 @@
 import type { Node, Edge } from "@xyflow/react";
 
-export function mapRoadmapToFlow(roadmap: any) {
+export function mapRoadmapToFlow(
+    roadmap: any,
+    onCompleteMilestone: (id: string) => void
+
+) {
     const nodes: Node[] = [];
     const edges: Edge[] = [];
 
@@ -43,11 +47,13 @@ export function mapRoadmapToFlow(roadmap: any) {
                 y: (index + 1) * 220,
             },
             data: {
+                milestoneId: milestone._id.toString(),
                 title: milestone.title,
                 description: milestone.description,
                 estimatedDuration: milestone.estimatedDuration,
                 progress: milestone.completed ? 100 : 0,
                 status,
+                onComplete: onCompleteMilestone,
             },
         });
 
@@ -60,6 +66,7 @@ export function mapRoadmapToFlow(roadmap: any) {
             style: {
                 stroke: "#59d7ff",
                 strokeWidth: 3,
+                strokeLinecap: "round",
             },
         });
     });

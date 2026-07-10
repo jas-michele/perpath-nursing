@@ -6,12 +6,13 @@ import FutureVisualization from "../components/FutureVisualization/FutureVisuali
 import CurrentMilestone from "../components/sidebar/CurrentMilestone";
 import BottomStatusBar from "../components/dashboard/BottomStatusBar";
 
-import { getRoadmap } from "../services/roadmapService";
+import { getRoadmap, completeMilestone } from "../services/roadmapService";
 import { getCurrentUser } from "../services/authService";
 
-// import aiCore from "../assets/space/ai-core.png";
+import aiCore from "../assets/space/ai-core.png";
 import planet from "../assets/space/planet.png"
 import moon from "../assets/space/moon.png";
+
 
 import "../styles/FutureDashboard.css";
 
@@ -41,7 +42,10 @@ export default function FutureDashboard() {
     return <div>Loading Dashboard...</div>;
   }
 
-
+const handleCompleteMilestone = async (id: string) => {
+    const response = await completeMilestone(id);
+    setRoadmap(response.roadmap);
+};
 
   return (
     <div className="future-dashboard">
@@ -54,6 +58,13 @@ export default function FutureDashboard() {
       </aside>
 
       <main className="center-panel">
+        <img
+          src={aiCore}
+          className="ai-core"
+          alt=""
+          aria-hidden="true"
+        />
+
         <img
           src={planet}
           className="space-planet"
@@ -68,9 +79,12 @@ export default function FutureDashboard() {
           aria-hidden="true"
         />
 
-        
-          <FutureVisualization roadmap={roadmap} />
-        
+
+        <FutureVisualization 
+        roadmap={roadmap} 
+        onCompleteMilestone={handleCompleteMilestone}
+        />
+
       </main>
 
       <aside className="right-panel">

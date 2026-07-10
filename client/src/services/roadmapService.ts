@@ -13,3 +13,19 @@ export async function getRoadmap() {
 
   return response.data.roadmap;
 }
+
+export const completeMilestone = async (milestoneId: string) => {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.patch(
+        `${API}/api/roadmap/milestones/${milestoneId}/complete`,
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
+
+    return response.data;
+};

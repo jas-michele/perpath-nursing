@@ -3,21 +3,24 @@ import "./MilestoneNode.css";
 
 type MilestoneNodeProps = {
     data: {
+        milestoneId: string;
         title: string;
         description?: string;
         estimatedDuration?: string;
         progress?: number;
         status: "complete" | "current" | "future";
+        onComplete: (id: string) => void;
     };
 };
 
 export default function MilestoneNode({ data }: MilestoneNodeProps) {
+    console.log(data.title, data);
     const icon =
         data.status === "complete"
             ? "✅"
             : data.status === "current"
-            ? "🚀"
-            : "🎯";
+                ? "🚀"
+                : "🎯";
 
     return (
         <>
@@ -51,6 +54,16 @@ export default function MilestoneNode({ data }: MilestoneNodeProps) {
                 <div className="node-progress">
                     {data.progress ?? 0}% Complete
                 </div>
+
+                {data.status === "current" && (
+                    <button
+                        className="complete-button"
+                        onClick={() => data.onComplete(data.milestoneId)}
+                    >
+                        Complete Milestone
+                    </button>
+                )}
+
             </div>
 
             <Handle

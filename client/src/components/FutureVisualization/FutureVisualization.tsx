@@ -12,11 +12,13 @@ const nodeTypes = {
 
 type FutureVisualizationProps = {
   roadmap: any;
+  onCompleteMilestone: (id: string) => void;
 }
 
 
 export default function FutureVisualization({
   roadmap,
+  onCompleteMilestone,
 }: FutureVisualizationProps) {
  
 
@@ -28,7 +30,10 @@ export default function FutureVisualization({
     );
   }
 
-  const { nodes, edges } = mapRoadmapToFlow(roadmap);
+  const { nodes, edges } = mapRoadmapToFlow(
+    roadmap,
+    onCompleteMilestone
+);
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
