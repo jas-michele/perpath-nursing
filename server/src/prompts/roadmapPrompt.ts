@@ -14,21 +14,26 @@ Career Rubric
 ${rubricContext}
 
 Base the roadmap on both the learner profile and this rubric.
+Use the learner's current module as the starting point whenever possible.
+Do not restart the learner at Module 1 unless they are actually on Module 1.
 Do not invent curriculum that conflicts with the rubric.
-` : ""}
+` : `
+No curriculum or rubric was provided.
+
+Generate the roadmap using ONLY the learner profile and general industry best practices.
+Do not assume the learner is enrolled in any specific bootcamp or curriculum.
+`}
 
 Instructions:
 
 - Create a realistic roadmap based on the learner's current skill level.
+- Begin the roadmap from the learner's current position, not from the beginning of the curriculum.
+- If a curriculum or rubric is provided, locate the learner's current module within the curriculum and use that as the starting point.
+- Only recommend reviewing earlier modules if they are essential prerequisites or if the learner's technical confidence indicates they need reinforcement.
+- Continue the roadmap from the learner's current module toward their career goal.
 - Break the roadmap into milestones.
-- Each milestone should include:
-  - title
-  - description
-- Include weekly goals.
-- Include recommended learning resources.
-- Estimate how long it should take the learner to reach their goal.
-- Tailor the roadmap to learner's available study hours.
-- Keep recommendations encouraging and practical.
+- Match the learner's current module even if the curriculum uses different terminology such as Module, Week, Unit, Sprint, Phase, or Section.
+- If the learner's current module cannot be found in the curriculum, estimate the closest appropriate starting point based on the learner's skills, experience, technical confidence, and current learning stage.
 
 Return ONLY valid JSON.
 
@@ -39,7 +44,9 @@ Format:
 "milestones": [
     {
      "title": "",
-     "description": ""
+     "description": "",
+     "estimatedDuration": "",
+     "completed": false
     }
   ],
     "weeklyGoals": [],

@@ -33,20 +33,16 @@ export const generateUserRoadmap = async (
             biggestLearningObstacle: user.biggestLearningObstacle,
         }
 
-        console.log("Content-Type:", req.headers["content-type"]);
-console.log("FILE:", req.file);
-console.log("BODY:", req.body);
+        let rubricText = "";
 
-        if (!req.file) {
-            return res.status(400).json({
-                success: false,
-                message: "Rubric PDF is required"
-            })
+        if (req.file) {
+            rubricText = await extractPDFText(req.file.path);
         }
 
-        const rubricText = await extractPDFText(req.file.path)
-
-        const roadmapJSON = await generateRoadmap(learnerProfile, rubricText);
+        const roadmapJSON = await generateRoadmap(
+            learnerProfile,
+            rubricText
+        );
 
         const cleanedRoadmap = roadmapJSON
             .replace(/```json/g, "")
@@ -94,7 +90,7 @@ export const getRoadmap = async (
 
         console.log("Roadmap found:", roadmap)
 
-        
+
 
         if (!roadmap) {
             res.status(404).json({
@@ -117,3 +113,48 @@ export const getRoadmap = async (
         })
     }
 }
+
+export const completeMilestone = async (
+    req: Request,
+    res: Response
+) => {
+    try {
+        const userId = (req as any).user.id;
+        const { milestoneId } = req.params;
+
+        const roadmap = await Roadmap.findOne({ user: userId });
+
+        if (!roadmap) {
+            return res.status(404).json({
+                success: false,
+                message: "Roadmap not found."
+            });
+        }
+
+        const milestone = roadmap.milestones.id(milestoneId as string);
+
+        if (!milestone) {
+            return res.status(404).json({
+                success: false,
+                message: "Milestone not found."
+            });
+        }
+
+        milestone.completed = true;
+
+        await roadmap.save();
+
+        return res.json({
+            success: true,
+            roadmap
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Failed to complete milestone."
+        });
+    }
+};
