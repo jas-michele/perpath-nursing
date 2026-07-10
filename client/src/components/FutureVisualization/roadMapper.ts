@@ -58,6 +58,7 @@ export function mapRoadmapToFlow(roadmap: any) {
             animated: index === currentIndex,
             type: "smoothstep",
             style: {
+                stroke: "#59d7ff",
                 strokeWidth: 3,
             },
         });

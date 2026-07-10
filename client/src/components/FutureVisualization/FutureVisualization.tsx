@@ -38,7 +38,7 @@ export default function FutureVisualization({
         nodeTypes={nodeTypes}
         fitView
       >
-        <Background />
+        {/* <Background /> */}
         {/* <MiniMap /> */}
         <Controls />
       </ReactFlow>

@@ -54,12 +54,12 @@ export default function FutureDashboard() {
       </aside>
 
       <main className="center-panel">
-        {/* <img
+        <img
           src={planet}
           className="space-planet"
           alt=""
           aria-hidden="true"
-        /> */}
+        />
 
         <img
           src={moon}
