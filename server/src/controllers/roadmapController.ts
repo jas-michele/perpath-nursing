@@ -88,7 +88,13 @@ export const getRoadmap = async (
     try {
         const userId = (req as any).user.id;
 
+        console.log("Authenticated user", userId);
+
         const roadmap = await getRoadmapByUserId(userId);
+
+        console.log("Roadmap found:", roadmap)
+
+        
 
         if (!roadmap) {
             res.status(404).json({

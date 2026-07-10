@@ -11,6 +11,7 @@ import {
     updateUserProfile
  } from "../services/profileService";
 
+
  
 export const chatWithAI = async (
     req: Request,
@@ -72,4 +73,38 @@ export const chatWithAI = async (
             message: "Failed to communicate with AI."
         })
     }
+}
+
+export const startConversation = async (
+    req: Request,
+    res: Response
+) => {
+    console.log("Start conversation hit");
+   try {
+ 
+    const userId = (req as any).user.id;
+
+    const conversation = await getConversation(userId);
+
+    const reply = await chatWithCareerCoach(conversation.messages);
+
+    conversation.messages.push({
+        role: "assistant",
+        content: reply,
+    });
+    
+    await saveConversation(userId, conversation.messages);
+
+    return res.json({
+        success: true,
+        message: reply,
+    })
+} catch (error) {
+    console.error("Start conversation error",error);
+
+    return res.status(500).json({
+        success: false,
+        message: "Failed to start conversation"
+    })
+}
 }
