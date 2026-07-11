@@ -1,29 +1,42 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./LandingPage.css";
 
 function LandingPage() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="app">
       <nav className="navbar">
         <div className="logo">
-          <h2>Career Catalyst AI</h2>
+          <h2>PERPATH AI</h2>
           <span>Powered by Per Scholas</span>
         </div>
 
         <div className="nav-links">
-          <a href="#">Home</a>
-          <a href="#">Roadmap</a>
+          <Link to="/" >Home</Link>
+          <Link to="/dashboard">Roadmap</Link>
           <a href="#">Mentors</a>
-          <a href="#">Employers</a>
-          <a href="#">About</a>
+
+
         </div>
 
         <div className="auth-buttons">
-          <button className="login-btn">Sign In</button>
-
           <Link to="/get-started" className="register-btn">
             Get Started
           </Link>
+
+          <Link to="/login" className="login-btn">Sign In</Link>
+
+          <button className="nav-link-button" onClick={handleLogout}>
+            Logout
+          </button>
+
+
         </div>
       </nav>
 
@@ -50,7 +63,6 @@ function LandingPage() {
               Start Your Journey
             </Link>
 
-            <button className="secondary-btn">Watch Demo</button>
           </div>
         </div>
 

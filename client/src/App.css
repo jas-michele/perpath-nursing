@@ -235,3 +235,40 @@ hr {
   }
 }
 
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: rgba(12, 8, 35, 0.92);
+  border-bottom: 1px solid rgba(89, 215, 255, 0.25);
+  backdrop-filter: blur(14px);
+}
+
+.nav-logo {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: #cfd8ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #59d7ff;
+}

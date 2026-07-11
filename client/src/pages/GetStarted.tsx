@@ -39,9 +39,9 @@ function GetStarted() {
   return (
     <div className="get-started-page">
       <div className="left-panel">
-        <p className="page-tag">Career Catalyst AI</p>
+        <p className="page-tag">PERPATH AI</p>
 
-        <h1>Start Your Tech Journey</h1>
+        <h1>Activate Your AI Mentor</h1>
 
         <p className="page-description">
           Create your account to unlock your personalized AI career roadmap,
