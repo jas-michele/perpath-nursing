@@ -12,6 +12,8 @@ import { getCurrentUser } from "../services/authService";
 import aiCore from "../assets/space/ai-core.png";
 import planet from "../assets/space/planet.png"
 import moon from "../assets/space/moon.png";
+import brain from "../assets/space/brain.png";
+
 
 
 import "../styles/FutureDashboard.css";
@@ -20,6 +22,7 @@ export default function FutureDashboard() {
   const [roadmap, setRoadmap] = useState<any>(null);
   const [user, setUser] = useState<any>(null);
 
+  
   useEffect(() => {
     async function loadRoadmap() {
       try {
@@ -42,10 +45,10 @@ export default function FutureDashboard() {
     return <div>Loading Dashboard...</div>;
   }
 
-const handleCompleteMilestone = async (id: string) => {
+  const handleCompleteMilestone = async (id: string) => {
     const response = await completeMilestone(id);
     setRoadmap(response.roadmap);
-};
+  };
 
   return (
     <div className="future-dashboard">
@@ -58,6 +61,7 @@ const handleCompleteMilestone = async (id: string) => {
       </aside>
 
       <main className="center-panel">
+
         <img
           src={aiCore}
           className="ai-core"
@@ -79,11 +83,18 @@ const handleCompleteMilestone = async (id: string) => {
           aria-hidden="true"
         />
 
-
-        <FutureVisualization 
-        roadmap={roadmap} 
-        onCompleteMilestone={handleCompleteMilestone}
+        <img
+          src={brain}
+          className="space-brain"
+          alt=""
+          aria-hidden="true"
         />
+
+
+        <FutureVisualization
+          roadmap={roadmap}
+          onCompleteMilestone={handleCompleteMilestone}
+            />
 
       </main>
 

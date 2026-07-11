@@ -1,4 +1,5 @@
 import { Handle, Position } from "@xyflow/react";
+import astronaut from "../../assets/space/astro.png"
 import "./MilestoneNode.css";
 
 type MilestoneNodeProps = {
@@ -56,12 +57,21 @@ export default function MilestoneNode({ data }: MilestoneNodeProps) {
                 </div>
 
                 {data.status === "current" && (
-                    <button
-                        className="complete-button"
-                        onClick={() => data.onComplete(data.milestoneId)}
-                    >
-                        Complete Milestone
-                    </button>
+                    <>
+                        <img
+                            src={astronaut}
+                            className="current-astronaut"
+                            alt=""
+                            aria-hidden="true"
+                        />
+
+                        <button
+                            className="complete-button"
+                            onClick={() => data.onComplete(data.milestoneId)}
+                        >
+                            Complete Milestone
+                        </button>
+                    </>
                 )}
 
             </div>

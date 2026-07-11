@@ -5,9 +5,12 @@ import { mapRoadmapToFlow } from "./roadMapper";
 import "@xyflow/react/dist/style.css"
 
 import MilestoneNode from "./MilestoneNode";
+import AstronautNode from "./AstronautNode";
+
 
 const nodeTypes = {
   milestone: MilestoneNode,
+  astronaut: AstronautNode,
 };
 
 type FutureVisualizationProps = {
@@ -20,7 +23,7 @@ export default function FutureVisualization({
   roadmap,
   onCompleteMilestone,
 }: FutureVisualizationProps) {
- 
+
 
   if (!roadmap) {
     return (
@@ -30,10 +33,12 @@ export default function FutureVisualization({
     );
   }
 
-  const { nodes, edges } = mapRoadmapToFlow(
+  const { nodes, edges, } = mapRoadmapToFlow(
     roadmap,
     onCompleteMilestone
-);
+  );
+
+ 
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -42,7 +47,10 @@ export default function FutureVisualization({
         edges={edges}
         nodeTypes={nodeTypes}
         fitView
+
       >
+
+       
         {/* <Background /> */}
         {/* <MiniMap /> */}
         <Controls />

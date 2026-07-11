@@ -71,5 +71,26 @@ export function mapRoadmapToFlow(
         });
     });
 
-    return { nodes, edges };
+    const activeIndex = currentIndex === -1
+        ? Math.max(milestones.length - 1, 0)
+        : currentIndex;
+
+    const activeX = activeIndex % 2 === 0 ? 150 : 500;
+    const activeY = (activeIndex + 1) * 220;
+
+    nodes.push({
+        id: "astronaut",
+        type: "astronaut",
+        position: {
+            x: activeX - 130,
+            y: activeY + 20,
+        },
+        data: {},
+        draggable: false,
+        selectable: false,
+        connectable: false,
+        zIndex: 20,
+    });
+
+    return { nodes, edges, };
 }

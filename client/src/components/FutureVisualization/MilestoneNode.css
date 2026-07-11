@@ -145,19 +145,46 @@
 }
 
 .complete-button {
-    margin-top: 12px;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #59d7ff;
-    color: #111;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #59d7ff;
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .complete-button:hover {
-    transform: translateY(-2px);
-    background: #7fe4ff;
+  transform: translateY(-2px);
+  background: #7fe4ff;
+}
+
+.milestone-node {
+  position: relative;
+  overflow: visible;
+
+  width: 240px;
+}
+
+.current-astronaut {
+    position: absolute;
+
+    width: 140px;
+
+    left: -130px;
+    top: 10px;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    filter:
+        brightness(1.25)
+        saturate(1.5)
+        drop-shadow(0 0 18px rgba(255, 70, 180, .5));
+
+    animation: astronautFloat 5s ease-in-out infinite;
 }
