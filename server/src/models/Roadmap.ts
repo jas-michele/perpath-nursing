@@ -17,6 +17,10 @@ const roadmapSchema = new mongoose.Schema(
 
         estimatedDuration: String,
 
+        summary: {
+            type: String,
+        },
+
         milestones: [
             {
                 title: String,

@@ -24,6 +24,8 @@ export const generateUserRoadmap = async (
         }
 
         const learnerProfile = {
+            firstName: user.firstName,
+            
             careerGoal: user.careerGoal,
             experienceLevel: user.experienceLevel,
             weeklyStudyHours: user.weeklyStudyHours,

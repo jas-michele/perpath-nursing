@@ -35,12 +35,25 @@ Instructions:
 - Match the learner's current module even if the curriculum uses different terminology such as Module, Week, Unit, Sprint, Phase, or Section.
 - If the learner's current module cannot be found in the curriculum, estimate the closest appropriate starting point based on the learner's skills, experience, technical confidence, and current learning stage.
 
+Before generating the roadmap, create a personalized AI summary.
+
+The summary should:
+
+- Mention the learner's career goal.
+- Mention their current experience level.
+- Mention their biggest learning obstacle if one exists.
+- Explain why the first milestone is important.
+- Encourage the learner.
+- Keep it under 75 words.
+
+
 Return ONLY valid JSON.
 
 Format:
 {
 "careerGoal": "",
 "estimatedDuration": "",
+"summary": "A short motivational summary (2-4 sentences) personalized to the learner. Explain where they are starting, why this roadmap fits their experience, and what they should focus on first.",
 "milestones": [
     {
      "title": "",
