@@ -23,7 +23,7 @@ function AICoach() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [isListening, setIsListening] = useState(false);
-const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   useEffect(() => {
@@ -56,108 +56,116 @@ const [isSubmitting, setIsSubmitting] = useState(false);
     loadConversation();
   }, []);
 
- const handleVoiceInput = async () => {
+  const handleVoiceInput = async () => {
     try {
-        const transcript =
-            await speechRecognitionService.startListening();
+      setIsListening(true);
 
-        setInput(transcript);
+      const transcript =
+        await speechRecognitionService.startListening();
+
+      setInput(transcript);
+
+      // Give the UI a split second to show what was recognized
+      setTimeout(() => {
+        handleContinue(transcript);
+      }, 300);
 
     } catch (error) {
-        console.error(error);
+      console.error(error);
+    } finally {
+      setIsListening(false);
     }
-};
-
+  };
   const handleContinue = async (voiceInput?: string) => {
-  const userInput = (voiceInput ?? input).trim();
+    const userInput = (voiceInput ?? input).trim();
 
-  if (!userInput || isSubmitting) return;
+    if (!userInput || isSubmitting) return;
 
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  setMessages((prev) => [
-    ...prev,
-    {
-      sender: "user",
-      text: userInput,
-    },
-  ]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        sender: "user",
+        text: userInput,
+      },
+    ]);
 
-  setInput("");
+    setInput("");
 
-  try {
-    const data = await sendMessage(userInput);
+    try {
+      const data = await sendMessage(userInput);
 
-    console.log("AI response:", data);
+      console.log("AI response:", data);
 
-    setCurrentQuestion((prev) => prev + 1);
+      setCurrentQuestion((prev) => prev + 1);
 
-    if (data.completed) {
-      setUiState("upload");
+      if (data.completed) {
+        setUiState("upload");
 
-      const completionMessage =
-        "Congratulations! Your career profile is complete. Upload your curriculum or rubric so I can generate your personalized roadmap.";
+        const completionMessage =
+          "Congratulations! Your career profile is complete. Upload your curriculum or rubric so I can generate your personalized roadmap.";
+
+        setMessages((prev) => [
+          ...prev,
+          {
+            sender: "ai",
+            text: completionMessage,
+          },
+        ]);
+
+        textToSpeechService.speak(completionMessage);
+        return;
+      }
 
       setMessages((prev) => [
         ...prev,
         {
           sender: "ai",
-          text: completionMessage,
+          text: data.message,
         },
       ]);
 
-      textToSpeechService.speak(completionMessage);
-      return;
+      textToSpeechService.speak(data.message);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
+  };
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        sender: "ai",
-        text: data.message,
-      },
-    ]);
+  const handleGenerateRoadmap = async (file?: File) => {
+    try {
+      setUploading(true);
+      setUiState("generating");
 
-    textToSpeechService.speak(data.message);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      await generateRoadmap(file);
 
-const handleGenerateRoadmap = async (file?: File) => {
-  try {
-    setUploading(true);
-    setUiState("generating");
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "ai",
+          text: "✅ Your personalized roadmap has been generated successfully!",
+        },
+      ]);
 
-    await generateRoadmap(file);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        sender: "ai",
-        text: "✅ Your personalized roadmap has been generated successfully!",
-      },
-    ]);
+      setUiState("upload");
 
-    navigate("/dashboard");
-  } catch (error) {
-    console.error(error);
-
-    setUiState("upload");
-
-    setMessages((prev) => [
-      ...prev,
-      {
-        sender: "ai",
-        text: "❌ I couldn't generate your roadmap. Please try uploading the rubric again.",
-      },
-    ]);
-  } finally {
-    setUploading(false);
-  }
-};
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "ai",
+          text: "❌ I couldn't generate your roadmap. Please try uploading the rubric again.",
+        },
+      ]);
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
     <div className="ai-coach-page">
@@ -298,8 +306,9 @@ const handleGenerateRoadmap = async (file?: File) => {
               <button
                 type="button"
                 onClick={handleVoiceInput}
+                disabled={isListening || isSubmitting}
               >
-                🎤
+                {isListening ? "🎤 Listening..." : "🎤"}
               </button>
 
               <button onClick={() => handleContinue()}>
@@ -384,6 +393,7 @@ const handleGenerateRoadmap = async (file?: File) => {
               career-ready technologist.
             </h4>
           </div>
+
 
         </aside>
 

@@ -1,0 +1,16 @@
+
+.roadmap-home-button {
+   background: transparent;
+    color: var(--cyan);
+   border: 2px solid var(--cyan);
+ 
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.roadmap-home-button:hover {
+    background: rgba(16, 231, 255, 0.08);
+    box-shadow: 0 0 18px rgba(16, 231, 255, 0.35);
+    transform: translateY(-2px);
+}

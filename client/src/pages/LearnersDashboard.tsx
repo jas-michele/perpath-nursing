@@ -483,7 +483,9 @@ function LearnersDashboard() {
                             AI Online
                         </div>
 
-                        <button className="header-icon-button" type="button">
+                        <button className="header-icon-button" type="button" 
+                            onClick={() => navigate("/")}
+                        >
                             ◌
                         </button>
                     </div>
