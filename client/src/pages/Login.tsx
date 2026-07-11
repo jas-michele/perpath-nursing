@@ -62,7 +62,7 @@ function SignIn() {
           <div className="signin-brand-icon">C</div>
 
           <div>
-            <h1>Career Catalyst AI</h1>
+            <h1>PERPATH AI</h1>
             <p>Powered by Per Scholas</p>
           </div>
         </Link>
@@ -147,7 +147,7 @@ function SignIn() {
             </div>
 
             <p className="signin-card-description">
-              Enter your information to access your Career Catalyst dashboard.
+              Enter your information to access your PerPath dashboard.
             </p>
 
             <form onSubmit={handleSubmit} className="signin-form">
@@ -233,7 +233,7 @@ function SignIn() {
 
             <div className="signin-divider">
               <span></span>
-              <p>New to Career Catalyst?</p>
+              <p>New to Per Path?</p>
               <span></span>
             </div>
 

@@ -46,7 +46,7 @@ function GetStarted() {
         <p className="page-description">
           Create your account to unlock your personalized AI career roadmap,
           connect with mentors, and discover employer opportunities through
-          Career Catalyst AI.
+          Per Path AI.
         </p>
 
         <div className="feature-list">

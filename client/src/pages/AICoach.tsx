@@ -163,7 +163,7 @@ const handleGenerateRoadmap = async (file?: File) => {
     <div className="ai-coach-page">
       <div className="command-header">
         <div>
-          <p className="system-label">Career Catalyst AI</p>
+          <p className="system-label">PERPATH AI</p>
           <h1>Command Center</h1>
         </div>
 

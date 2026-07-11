@@ -80,3 +80,27 @@ li{
     margin-top:15px;
 
 }
+
+.chat-nav-btn{
+     width: 100%;
+    margin-top: 20px;
+    padding: 14px 20px;
+
+    border: 2px solid var(--cyan);
+    border-radius: 999px;
+
+    background: transparent;
+    color: var(--cyan);
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.chat-nav-btn:hover{
+    background: rgba(16, 231, 255, 0.08);
+    box-shadow: 0 0 18px rgba(16, 231, 255, 0.35);
+    transform: translateY(-2px);
+}

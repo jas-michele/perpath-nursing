@@ -1,4 +1,5 @@
 import "./CurrentMilestone.css";
+import { useNavigate } from "react-router-dom"
 import { Clock, ArrowRight } from "lucide-react";
 
 type CurrentMilestoneProps = {
@@ -23,6 +24,8 @@ function CurrentMilestone({
   const nextMilestone =
     roadmap.milestones[currentIndex + 1];
 
+    const navigate = useNavigate();
+
   return (
     <div className="current-panel">
 
@@ -42,7 +45,7 @@ function CurrentMilestone({
 
         <h4>Key Topics</h4>
 
-      
+
 
         <div className="info-row">
           <Clock size={18} />
@@ -62,6 +65,15 @@ function CurrentMilestone({
               </span>
             </div>
           </span>
+        </div>
+
+        <div className="coach-card">
+          <span className="coach-label">Need guidance?</span>
+          <p>Ask PerPath AI about your current roadmap or next milestone.</p>
+
+          <button className="chat-nav-btn" onClick={() => navigate("/ai-coach")}>
+            Return to Command Center →
+          </button>
         </div>
 
       </div>

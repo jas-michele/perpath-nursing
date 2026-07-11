@@ -1,7 +1,12 @@
-.progress-sidebar{
-    height:100%;
-    padding:24px;
-    color:white;
+.progress-sidebar {
+    height: 100%;
+    padding: 24px;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
 .profile-card{

@@ -387,7 +387,7 @@ function LearnersDashboard() {
                     <div className="brand-mark">CC</div>
 
                     <div>
-                        <strong>Career Catalyst</strong>
+                        <strong>PerPath </strong>
                         <span>AI</span>
                     </div>
                 </div>
@@ -434,6 +434,15 @@ function LearnersDashboard() {
                     </button>
                 </nav>
 
+                <div>
+                    <button
+                        className="ai-coach-button"
+                        onClick={() => navigate("/ai-coach")}
+                    >
+                         PerPath AI Chat
+                    </button>
+                </div>
+
                 <div className="sidebar-profile">
                     <div className="profile-top">
                         <div className="sidebar-avatar">T</div>
@@ -459,7 +468,7 @@ function LearnersDashboard() {
             <main className="dashboard-main">
                 <header className="dashboard-header">
                     <div>
-                        <p className="header-eyebrow">CAREER CATALYST AI</p>
+                        <p className="header-eyebrow">PERPATH AI</p>
                         <h1>
                             Welcome back, {learnerName}! <span>👋</span>
                         </h1>
