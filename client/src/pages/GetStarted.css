@@ -17,7 +17,7 @@
 }
 
 
-  .left-panel {
+  .get-started-left-panel {
       width: 600px; 
   }
   
@@ -29,7 +29,7 @@
     font-weight:900;
 }
   
-  .left-panel h1 {
+  .get-started-left-panel h1 {
     font-size: 56px;
     line-height: 1.05;
     color: #0057b8;
@@ -60,7 +60,7 @@
     0 0 15px rgba(89,231,255,.08);
 }
   
-  .register-card {
+  .get-started-register-card {
     background: white;
     padding: 38px;
     border-radius: 24px;
@@ -68,14 +68,14 @@
     border-top: 8px solid #59e7ff;
   }
   
-  .register-card h2 {
+  .get-started-register-card h2 {
     color: #0057b8;
     font-size: 30px;
     text-align: center;
     margin-bottom: 28px;
   }
   
-  .register-card label {
+  .get-started-register-card label {
     display: block;
     margin-top: 16px;
     margin-bottom: 7px;
@@ -83,7 +83,7 @@
     color: #003366;
   }
   
-  .register-card input {
+  .get-started-register-card input {
     width: 100%;
     padding: 14px;
     border: 2px solid #d7e8ff;
@@ -93,7 +93,7 @@
     box-sizing: border-box;
   }
   
-  .register-card input:focus {
+  .get-started-register-card input:focus {
     border-color: #0057b8;
     box-shadow: 0 0 0 4px rgba(0, 87, 184, 0.12);
   }
@@ -141,17 +141,17 @@
       padding: 45px 25px;
     }
   
-    .left-panel h1 {
+    .get-started-left-panel h1 {
       font-size: 42px;
     }
   
-    .register-card {
+    .get-started-register-card {
       padding: 28px;
     }
   }
 
   
-.left-panel {
+.get-started-left-panel {
     max-width: 650px;
 
     background: linear-gradient(
@@ -168,7 +168,7 @@
     box-shadow: 0 0 30px rgba(89,231,255,.18);
 }
 
-.left-panel h1 {
+.get-started-left-panel h1 {
     color: #eefcff;
 
     text-shadow:
@@ -177,7 +177,7 @@
     font-size: 58px;
 }
 
-.register-card {
+.get-started-register-card {
     grid-column: 2;
 }
 

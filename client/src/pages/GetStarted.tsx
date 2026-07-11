@@ -38,7 +38,7 @@ function GetStarted() {
   }  
   return (
     <div className="get-started-page">
-      <div className="left-panel">
+      <div className="get-started-left-panel">
         <p className="page-tag">PERPATH AI</p>
 
         <h1>Activate Your AI Mentor</h1>
@@ -57,7 +57,7 @@ function GetStarted() {
         </div>
       </div>
 
-      <div className="register-card">
+      <div className="get-started-register-card">
         <h2>Create Your Account</h2>
 
         <label>First Name</label>

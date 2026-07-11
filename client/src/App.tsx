@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import GetStarted from "./pages/GetStarted";
 import AICoach from "./pages/AICoach";
 import FutureDashboard from "./pages/FutureDashboard";
+import LearnersDashboard from "./pages/LearnersDashboard";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -40,6 +41,7 @@ function App() {
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/ai-coach" element={<AICoach />} />
         <Route path="/dashboard" element={<FutureDashboard />} />
+        <Route path="/learners-dashboard" element={<LearnersDashboard />} />
       </Routes>
 
     </BrowserRouter>

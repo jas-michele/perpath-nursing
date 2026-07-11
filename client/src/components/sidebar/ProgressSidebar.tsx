@@ -1,4 +1,5 @@
 import "./ProgressSidebar.css";
+import { useNavigate } from "react-router-dom";
 import { User, Target, Clock } from "lucide-react";
 
 type ProgressSidebarProps = {
@@ -25,6 +26,8 @@ function ProgressSidebar({
   ).length;
 
   const total = roadmap.milestones.length;
+
+  const navigate = useNavigate();
 
   const progress =
     total === 0
@@ -75,6 +78,13 @@ function ProgressSidebar({
         </div>
 
       </div>
+
+    <button
+    className="roadmap-nav-button"
+    onClick={() => navigate("/learners-dashboard")}
+>
+    ← Back to Dashboard
+</button>
 
       <div className="quote">
         "Every line of code you write builds your future."
