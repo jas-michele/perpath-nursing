@@ -11,14 +11,14 @@ function GetStarted() {
   return (
     <div className="get-started-page">
       <div className="left-panel">
-        <p className="page-tag">Career Catalyst AI</p>
+        <p className="page-tag">PerPath AI</p>
 
         <h1>Start Your Tech Journey</h1>
 
         <p className="page-description">
           Create your account to unlock your personalized AI career roadmap,
           connect with mentors, and discover employer opportunities through
-          Career Catalyst AI.
+          PerPath AI.
         </p>
 
         <div className="feature-list">

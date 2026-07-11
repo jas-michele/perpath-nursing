@@ -1,214 +1,359 @@
-# 🚀 Hack Jam 2026 - Team 04
+# 🚀 PerPath AI
+### Illuminate Your Path
 
-Welcome to your team's official Hack Jam 2026 project repository. This is where your team will plan, build, document, and deliver your **Tech Futures: Illuminate Your Path** application prototype.
-
----
-
-# Business Case
-
-In today's rapidly evolving digital landscape, the future of a career in tech can feel both limitless and uncertain. Per Scholas alumni, current learners, and aspiring candidates may begin from different starting points, but they share a common challenge: clearly seeing the path from where they are today to where they want to be tomorrow.
-
-Many learners and alumni bring ambition, talent, and technical skills, but the journey forward is not always visible. Some are navigating the transition from training to career. Others are taking their first step into tech or trying to understand what is possible beyond their current reality. The opportunity exists, but the roadmap is often missing.
-
-Without clear direction or meaningful connections to industry, individuals can struggle to transform potential into progress. The challenge is no longer only about gaining skills. It is about envisioning the future, mapping the journey, and confidently moving toward it.
+> **PerPath AI** is an AI-powered career navigation platform that helps Per Scholas learners, alumni, and aspiring technologists discover, visualize, and achieve their technology career goals through personalized roadmaps, conversational AI, and an immersive future visualization experience.
 
 ---
 
-# Solution Objectives
+# 🌟 Overview
 
-Your mission is to **design and develop an application that acts as a digital gateway to the future**, guiding Per Scholians from where they are today to where they aspire to be.
+Breaking into technology can feel overwhelming. Many learners know **where they want to go**, but not **how to get there**.
 
-An ideal solution should incorporate the following elements in a creative, immersive, and futuristic way:
+PerPath AI transforms uncertainty into a personalized career journey. Through intelligent conversations, Retrieval-Augmented Generation (RAG), and interactive roadmap visualization, learners receive a customized path from their current skill level to their desired technology career.
 
-- ✅ **AI-Powered Career Pathing**
-  - Generate dynamic, personalized roadmaps that chart a user's journey from their current state to their desired tech career
-  - Adapt pathways in real time based on user progress, skills, and goals
-- ✅ **Future Visualization Engine**
-  - Use AI to create compelling visual representations of a user's future career *Optional*
-  - Bring the journey to life through interactive maps, simulations, dashboards, or futuristic UI experiences
-- ✅ **Employer Possibilities Portal**
-  - Show tech companies, mentors, roles, and opportunities aligned with a user's projected career path
-- ✅ **Immersive User Experience**
-  - Design an intuitive, engaging interface that users will love
-  - Provide user profiles and methods to track progress, milestones, and goals
-- ✅ **Scalable Innovation**
-  - Build the solution so it can evolve over time, supporting future users, new technologies, and expanded capabilities
+Rather than providing generic career advice, PerPath AI understands each learner's background, goals, experience, and confidence to create a roadmap that evolves with them.
 
 ---
 
-# Judging Criteria
+# 🎯 The Problem
 
-Projects will be judged based on the following:
+Learners often struggle with:
 
-- **Idea** - Uniqueness of innovation, creativity in execution, demonstrated value
-- **Design** - Ease of use and design appeal
-- **Implementation** - Functionality and code quality; excellence and technique in execution
-- **Presentation** - Demonstrated team collaboration; excellence in storytelling and pitching; presence and engagement
+- Knowing what to learn next
+- Understanding how current skills translate into career opportunities
+- Staying motivated throughout long learning journeys
+- Finding relevant resources and guidance
+- Visualizing long-term career growth
 
----
-
-# Required AI Integration
-
-Each team must use or implement AI in at least one area of the project. AI should enhance the Tech Futures experience and should not replace the core application functionality.
-
-Possible AI features include:
-
-- Personalized career pathway generation
-- Skill-gap analysis and adaptive roadmap updates
-- Future career visualization, simulations, or interactive journey maps
-- AI chatbots or virtual assistants for onboarding, career guidance, mentorship support, or Q&A
-- Personalized recommendations for learning resources, mentors, companies, events, or opportunities
-- Profile matching between users, mentors, employers, and career paths
-- Engagement analytics and progress insights
-- AI-powered achievement tracking and milestone recommendations
-- Natural language search for career resources, roles, or alumni opportunities
-
-> ⚠️ AI may assist with development, but teams must write the majority of their own code. Fully AI-generated project code is not allowed.
+Without a personalized roadmap, career planning can become overwhelming and directionless.
 
 ---
 
-# Deliverables
+# 💡 Our Solution
 
-Teams must submit a final project by the designated Hack Jam deadline. Final submissions should include:
+PerPath AI combines conversational AI, curriculum-aware roadmap generation, and interactive visualization into one platform.
 
-- [ ] A working prototype or demo
-- [ ] Any visual aids/Presentation in addition to the codebase
-- [ ] A README updated with the project description, setup instructions, and feature overview
-- [ ] A clear explanation of how the solution supports Per Scholas learners, alumni, and aspiring candidates in navigating tech career futures
-- [ ] A list of external resources, open-source libraries, APIs, and assets used
+The application:
 
-Recommended documentation:
-
-- [ ] `/docs/overview.md` - Technical overview of your solution
-- [ ] `/docs/roadmap.md` - Vision for future development and deployment
-- [ ] `/docs/demo.mp4` - Optional video walkthrough
-- [ ] `/docs/Presentation.ppt` - Powerpoint presentation slides
----
-
-## 🛠 Approved Tech Stack
-
-Participants must use technologies from the approved Hack Jam 2026 whitelist unless they receive explicit approval to use something else.
-
-### Frontend
-
-- React.js - preferred frontend framework
-- Next.js - for server-side rendering or static site generation
-- Vue.js - allowed if justified
-- Tailwind CSS - recommended styling framework
-- Bootstrap
-- Material-UI / MUI
-- Chakra UI
-- Redux / Redux Toolkit
-- React Context API
-- Framer Motion
-- ShadCN/UI
-- D3.js or Chart.js
-
-### Backend
-
-- Node.js with Express.js - preferred JavaScript backend
-- Flask - lightweight Python backend option
-- Django - Python full-stack framework option
-- Spring Boot - Java enterprise-grade backend option
-- GraphQL - optional API query layer
-
-### Databases
-
-- MongoDB / MongoDB Atlas Free Tier - preferred for MERN and NoSQL solutions
-- PostgreSQL Free Tier - preferred for relational data
-- Supabase - PostgreSQL-based Firebase alternative
-- Redis - optional for caching or real-time updates
-
-### AI Tools and Techniques
-
-- LLMs, including Llama 3, Mistral 7B / Mixtral, Google Gemma, and Claude models
-- AI coding assistants, including GitHub Copilot, Codeium, and Codex
-- AI studios and IDEs, including Google AI Studio, Cursor IDE, and Lovable
-- Natural language processing techniques
-- Recommendation systems
-- Profile matching and engagement analytics
-- Natural language search
+- Conducts an AI-powered onboarding interview
+- Builds a personalized learner profile
+- Uses Retrieval-Augmented Generation (RAG) with the Per Scholas curriculum
+- Generates an adaptive career roadmap
+- Visualizes progress through an interactive career map
+- Continues supporting learners through an AI Career Coach
+- Tracks milestones, XP, streaks, and career readiness
 
 ---
 
-## 🚫 Blacklisted Technologies
+# ✨ Features
 
-The following are not allowed:
+## 🤖 AI Onboarding Experience
 
-- Low-code or no-code platforms such as Wix, Squarespace, or Bubble
-- Proprietary, non-free databases or paid database plans
-- Ruby on Rails, .NET Core, or outdated frameworks
-- Fully AI-generated project code
-- Unauthorized third-party APIs
+New users complete a conversational onboarding experience where the AI learns about:
 
----
+- Education
+- Training program
+- Experience level
+- Technical skills
+- Confidence ratings
+- Career goals
+- Learning obstacles
 
-## 📣 Communication
-
-Official Hack Jam communication will occur through Discord. All participants must join the official event server and use designated channels for:
-
-- Team discussions
-- Support and help desk questions
-- Event updates
-
-All communication must remain professional, respectful, inclusive, and hackathon-focused.
-
-Participants should not share private information, server screenshots, logs, or private conversations outside the Hack Jam community without permission.
+The information is saved to build a personalized learner profile.
 
 ---
 
-## 🔐 Security, Privacy, and Release
+## 💬 AI Career Coach
 
-- Participant data must be handled responsibly and in accordance with privacy laws.
-- Teams must not include sensitive data or proprietary company information in their projects.
-- By submitting a project, teams agree that Hack Jam organizers may showcase the project for promotional and educational purposes.
+The AI doesn't disappear after onboarding.
 
+Learners have continuous access to the AI Career Coach to:
 
----
+- Ask career questions
+- Receive learning guidance
+- Get roadmap clarification
+- Stay motivated
+- Navigate their next milestone
+- Explore career opportunities
 
-## 📅 Key Dates
-
-- **June 11, 2026** - Official Event Policies & Procedures effective date
-- **July 6, 2026** - Professional Development Training completion confirmation due
-- **July 8-13, 2026** - Discord Acceptable Use Policy event period
-- **Kickoff Day** - Team formation announced on Discord no later than kickoff day
-- **Final project deadline** - Submit by the designated Hack Jam deadline announced by organizers
-
-> Meeting invitations and final event deadlines will be provided by Hack Jam organizers.
+The AI grows alongside the learner throughout their journey.
 
 ---
 
-## 🧭 Clone This Repo
+## 🧠 Retrieval-Augmented Generation (RAG)
 
-```bash
-git clone https://github.com/your-org/hackjam-team-XX.git
-cd hackjam-team-XX
+Instead of generating generic career advice, PerPath AI grounds its responses using the Per Scholas curriculum.
+
+Our RAG pipeline:
+
+1. Uploads the curriculum rubric (PDF)
+2. Parses the document
+3. Splits the content into searchable chunks
+4. Retrieves the most relevant curriculum sections
+5. Sends those sections to OpenAI as context
+6. Generates a personalized roadmap aligned with both learner goals and curriculum expectations
+
+This produces more accurate, relevant, and personalized career guidance.
+
+---
+
+## 🗺 AI Career Roadmap
+
+Every learner receives a personalized roadmap containing:
+
+- Career milestones
+- Weekly goals
+- Learning resources
+- Estimated completion timeline
+- Progress tracking
+- Personalized recommendations
+
+---
+
+## 🚀 Future Visualization Engine
+
+Built using **React Flow**, learners can explore an interactive roadmap that visually represents their career journey.
+
+The visualization displays:
+
+- Completed milestones
+- Current milestone
+- Future learning objectives
+- Career progression
+- Interactive navigation
+
+---
+
+## 📊 Learner Dashboard
+
+The dashboard gives learners a real-time view of their progress.
+
+Features include:
+
+- Career Readiness Score
+- Current Goal
+- Learning Streak
+- XP System
+- Learning Time
+- Current Milestone
+- Progress Tracking
+- Resource Recommendations
+
+---
+
+## 💼 Opportunities Portal
+
+Learners can explore curated technology companies and future employment opportunities aligned with their career goals.
+
+---
+
+## 🔒 Authentication
+
+Secure authentication includes:
+
+- User Registration
+- Login
+- JWT Authentication
+- Protected Routes
+- Persistent Sessions
+
+---
+
+# 🧠 AI Architecture
+
+```text
+Learner Registration
+        │
+        ▼
+AI Onboarding Conversation
+        │
+        ▼
+Learner Profile Created
+        │
+        ▼
+Upload Curriculum Rubric (PDF)
+        │
+        ▼
+Parse & Chunk Document
+        │
+        ▼
+Retrieve Relevant Curriculum Sections (RAG)
+        │
+        ▼
+OpenAI GPT-4.1-mini
+        │
+        ▼
+Personalized Career Roadmap
+        │
+        ▼
+MongoDB Storage
+        │
+        ▼
+Dashboard + React Flow Visualization
+        │
+        ▼
+Continuous AI Career Coach
 ```
 
 ---
 
-## 🚀 Getting Started
+# 🛠 Tech Stack
 
-Add your team's setup instructions here as your project develops.
+## Frontend
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Axios
+- React Flow
+- CSS
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcrypt
+- Multer
+
+## Artificial Intelligence
+
+- OpenAI API (GPT-4.1-mini)
+- Retrieval-Augmented Generation (RAG)
+- Prompt Engineering
+- PDF Context Retrieval
+
+---
+
+# 📚 Libraries & Resources
+
+### Libraries
+
+- React Flow
+- Axios
+- Mongoose
+- JWT
+- bcrypt
+- Multer
+- pdf-parse
+
+### APIs
+
+- OpenAI API
+
+### Assets
+
+- React Icons
+- Google Fonts (if applicable)
+
+---
+
+# 📸 Application Preview
+
+## AI Command Center
+
+![AI Command Center](images/AI-Chat.png)
+
+---
+
+## Learner Dashboard
+
+![Learner Dashboard](images/LearnersDashboard.png)
+
+---
+
+## Interactive Career Roadmap
+
+![Interactive Career Roadmap](images/Roadmap.png)
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
 
 ```bash
-# Example
+git clone https://github.com/Kriviears/Hackjam-2026-team-04.git
+```
+
+Install dependencies
+
+```bash
+cd client
 npm install
+
+cd ../server
+npm install
+```
+
+Create a `.env` file
+
+```env
+OPENAI_API_KEY=your_key
+JWT_SECRET=your_secret
+MONGODB_URI=your_connection_string
+```
+
+Run the application
+
+```bash
 npm run dev
 ```
 
 ---
 
-## 📌 Project Description
+# 📂 Project Structure
 
-Add a brief description of your team's Tech Futures solution here.
+```text
+client/
+│── components/
+│── pages/
+│── services/
+│── assets/
 
-Suggested format:
-
-> Our project is a futuristic career pathing application that helps Per Scholas alumni, learners, and aspiring candidates visualize their tech career future, generate personalized AI-powered roadmaps, track milestones, and discover aligned employers, mentors, and opportunities.
+server/
+│── controllers/
+│── middleware/
+│── models/
+│── routes/
+│── services/
+│── uploads/
+```
 
 ---
 
-## 📄 License and Resource Credits
+# 🚀 Future Enhancements
 
-Add licensing information and credits for any open-source tools, APIs, design assets, datasets, or AI tools used in the project.
+- Resume analysis with AI feedback
+- AI mock interviews
+- Employer matching
+- Mentor recommendations
+- Skill-gap analysis
+- Achievement badges
+- Real-time labor market insights
+- Calendar integration
+- Internship recommendations
+- Adaptive roadmap updates based on learner progress
+
+---
+
+# 👥 Team
+
+**Team 04**
+
+Developed for the **CGI × Per Scholas HackJam 2026 – Tech Futures: Illuminate Your Path**
+
+---
+
+# 🙏 Acknowledgements
+
+Special thanks to:
+
+- Per Scholas
+- CGI
+- OpenAI
+- React Flow
+- The HackJam mentors and organizers

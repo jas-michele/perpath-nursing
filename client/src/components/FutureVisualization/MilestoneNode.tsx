@@ -15,7 +15,7 @@ type MilestoneNodeProps = {
 };
 
 export default function MilestoneNode({ data }: MilestoneNodeProps) {
-    console.log(data.title, data);
+   
     const icon =
         data.status === "complete"
             ? "✅"

@@ -34,7 +34,6 @@ function AICoach() {
 
   useEffect(() => {
 
-    console.log("Starting conversation...")
     const loadConversation = async () => {
       try {
         const data = await startConversation();
@@ -95,8 +94,6 @@ function AICoach() {
 
     try {
       const data = await sendMessage(userInput);
-
-      console.log("AI response:", data);
 
       setCurrentQuestion((prev) => prev + 1);
 

@@ -312,7 +312,7 @@ function WeeklyChart() {
 }
 
 function LearnersDashboard() {
-    console.log("LearnersDashboard mounted");
+ 
 
     const [user, setUser] = useState<any>(null);
     const [userRoadmap, setUserRoadmap] = useState<any>(null);
@@ -322,18 +322,13 @@ function LearnersDashboard() {
 
     const learnerName = user?.firstName ?? "Learner";
 
-    console.log("USER STATE:", user);
-    console.log("ROADMAP STATE:", userRoadmap);
-
     const loadDashboard = async () => {
-        console.log("loadDashboard called");
-
+     
         try {
             const userData = await getCurrentUser();
-            console.log("User Data:", userData);
-
+           
             const roadmapData = await getRoadmap();
-            console.log("Roadmap Data:", roadmapData);
+           
 
             setUser(userData);
             setUserRoadmap(roadmapData);
@@ -345,11 +340,10 @@ function LearnersDashboard() {
     };
 
     useEffect(() => {
-        console.log("useEffect fired");
+       
         loadDashboard();
     }, []);
 
-    console.log("Dashboard rendered");
 
     if (loading) {
         return <div>Loading...</div>;

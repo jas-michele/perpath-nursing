@@ -5,7 +5,7 @@ function LandingPage() {
     <div className="app">
       <nav className="navbar">
         <div className="logo">
-          <h2>Career Catalyst AI</h2>
+          <h2>PerPath AI</h2>
           <span>Powered by Per Scholas</span>
         </div>
 

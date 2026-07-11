@@ -18,7 +18,7 @@ function AICoach() {
   const [messages, setMessages] = useState([
     {
       sender: "ai",
-      text: "Welcome, future technologist. I am Career Catalyst AI. I will ask a few questions to build your personalized career roadmap.",
+      text: "Welcome, future technologist. I am PerPath AI. I will ask a few questions to build your personalized career roadmap.",
     },
     {
       sender: "ai",
@@ -62,7 +62,7 @@ function AICoach() {
     <div className="ai-coach-page">
       <div className="command-header">
         <div>
-          <p className="system-label">Career Catalyst AI</p>
+          <p className="system-label">PerPath AI</p>
           <h1>Command Center</h1>
         </div>
 
