@@ -7,6 +7,7 @@ import { connectDB } from "./config/mongo";
 import authRoutes from "./routes/authRoutes";
 import aiRoutes from "./routes/aiRoutes";
 import roadmapRoutes from "./routes/roadmapRoutes";
+import flashcardRoutes from "./routes/flashcardRoutes";
 
 dotenv.config();
 connectDB();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/roadmap", roadmapRoutes);
+app.use("/api/flashcards", flashcardRoutes);
 
 app.listen(PORT, () => {
     console.log(`Running on localhost: ${PORT}`)

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateFlashcards, getFlashcards } from "../services/f";
+import { generateFlashcards, getFlashcards } from "../services/flashcardService";
 import { getCurrentUser } from "../services/authService";
 import "./LearningHub.css";
 
