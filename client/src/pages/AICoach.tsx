@@ -24,6 +24,7 @@ function AICoach() {
 
   const [isListening, setIsListening] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
 
 
   useEffect(() => {
@@ -33,12 +34,13 @@ function AICoach() {
   }, [messages]);
 
   useEffect(() => {
-
     const loadConversation = async () => {
       try {
         const data = await startConversation();
 
-        textToSpeechService.speak(data.message);
+        if (voiceEnabled) {
+          textToSpeechService.speak(data.message);
+        }
 
         setMessages((prev) => [
           ...prev,
@@ -48,12 +50,12 @@ function AICoach() {
           },
         ]);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
+    };
 
     loadConversation();
-  }, []);
+  }, [voiceEnabled]);
 
   const handleVoiceInput = async () => {
     try {
@@ -172,232 +174,252 @@ function AICoach() {
           <h1>Command Center</h1>
         </div>
 
-        <div className="online-status">
-          <span></span>
-          AI Online
+        <div className="online-controls">
+          <div className="online-status">
+            <span></span>
+            AI Online
+          </div>
+
+          <button
+            type="button"
+            className="voice-toggle"
+            onClick={() => {
+              if (voiceEnabled) {
+                textToSpeechService.stop?.();
+                window.speechSynthesis?.cancel();
+              }
+
+              setVoiceEnabled((prev) => !prev);
+            }}
+            aria-label={voiceEnabled ? "Mute AI voice" : "Enable AI voice"}
+            title={voiceEnabled ? "Mute AI voice" : "Enable AI voice"}
+          >
+            {voiceEnabled ? "🔊 Voice On" : "🔇 Muted"}
+          </button>
         </div>
+</div>
+        <main className="command-grid">
+
+          {/* ================= LEFT PANEL ================= */}
+          <section className="ai-screen">
+            <div className="screen-frame">
+              <div className="scan-line"></div>
+
+              <div className="ai-avatar">
+                <div className="avatar-ring">
+                  <div className="avatar-face">
+                    <div className="eyes">
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div className="mouth"></div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="ai-title">PERPATH AI MENTOR</p>
+              <p className="ai-subtitle">
+                Building your personalized career roadmap...
+              </p>
+            </div>
+          </section>
+
+          {/* ================= CENTER PANEL ================= */}
+          <section className="chat-panel">
+
+            <div className="chat-header">
+              <div>
+                <p>Onboarding Sequence</p>
+
+                {uiState === "upload" && (
+                  <div className="upload-section">
+
+                    <h3>Generate Your Career Roadmap</h3>
+
+                    <p>
+                      Upload your curriculum for the most personalized roadmap,
+                      or generate one using your AI profile.
+                    </p>
+
+                    <label
+                      className={`upload-button ${uploading ? "disabled" : ""}`}
+                    >
+                      📄 Generate with Curriculum
+
+                      <input
+                        type="file"
+                        accept=".pdf,.md"
+                        hidden
+                        onChange={async (e) => {
+                          if (!e.target.files?.length) return;
+
+                          const file = e.target.files[0];
+
+                          setSelectedFile(file);
+
+                          await handleGenerateRoadmap(file);
+                        }}
+                      />
+                    </label>
+
+                    {selectedFile && (
+                      <span className="file-name">
+                        {selectedFile.name}
+                      </span>
+                    )}
+
+                    <div className="upload-divider">
+                      OR
+                    </div>
+
+                    <button
+                      className="generate-profile-button"
+                      disabled={uploading}
+                      onClick={() => handleGenerateRoadmap()}
+                    >
+                      ✨ Generate from AI Profile
+                    </button>
+
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="progress-track">
+              <div className="progress-glow"></div>
+            </div>
+
+            <div className="messages">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`message ${message.sender === "ai"
+                    ? "ai-message"
+                    : "user-message"
+                    }`}
+                >
+                  {message.text}
+                </div>
+              ))}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* ================= INTERVIEW ================= */}
+
+            {uiState === "interview" && (
+              <div className="chat-input-area">
+                <textarea
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Type your answer, paste code, or practice a mock interview..."
+                  rows={6}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleContinue();
+                    }
+                  }}
+                />
+
+                <button
+                  type="button"
+                  onClick={handleVoiceInput}
+                  disabled={isListening || isSubmitting}
+                >
+                  {isListening ? "🎤 Listening..." : "🎤"}
+                </button>
+
+                <button onClick={() => handleContinue()}>
+                  Continue
+                </button>
+              </div>
+            )}
+
+            {/* ================= GENERATING ================= */}
+
+            {uiState === "generating" && (
+              <div className="generating-panel">
+
+                <h2>🧠 Future Visualization Engine</h2>
+
+                <p>Analyzing learner profile...</p>
+                <p>Reading curriculum...</p>
+                <p>Building personalized roadmap...</p>
+
+                <div className="spinner"></div>
+
+              </div>
+            )}
+
+          </section>
+
+          {/* ================= RIGHT PANEL ================= */}
+
+          <aside className="profile-status">
+
+            <h3>Career Profile</h3>
+
+            <div className="status-item complete">
+              ✓ Account Created
+            </div>
+
+            <div
+              className={
+                currentQuestion >= 1
+                  ? "status-item complete"
+                  : "status-item"
+              }
+            >
+              {currentQuestion >= 1 ? "✓" : "○"} Education
+            </div>
+
+            <div
+              className={
+                currentQuestion >= 3
+                  ? "status-item complete"
+                  : "status-item"
+              }
+            >
+              {currentQuestion >= 3 ? "✓" : "○"} Career Goal
+            </div>
+
+            <div
+              className={
+                currentQuestion >= 5
+                  ? "status-item complete"
+                  : "status-item"
+              }
+            >
+              {currentQuestion >= 5 ? "✓" : "○"} Skills
+            </div>
+
+            <div
+              className={
+                currentQuestion >= 7
+                  ? "status-item complete"
+                  : "status-item"
+              }
+            >
+              {currentQuestion >= 7 ? "✓" : "○"} Mentor Match
+            </div>
+
+            <div className="mission-card">
+              <p>Mission</p>
+
+              <h4>
+                Build a personalized roadmap from learner to
+                career-ready technologist.
+              </h4>
+            </div>
+
+
+          </aside>
+
+        </main>
+
       </div>
-
-      <main className="command-grid">
-
-        {/* ================= LEFT PANEL ================= */}
-        <section className="ai-screen">
-          <div className="screen-frame">
-            <div className="scan-line"></div>
-
-            <div className="ai-avatar">
-              <div className="avatar-ring">
-                <div className="avatar-face">
-                  <div className="eyes">
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div className="mouth"></div>
-                </div>
-              </div>
-            </div>
-
-            <p className="ai-title">PERPATH AI MENTOR</p>
-            <p className="ai-subtitle">
-              Building your personalized career roadmap...
-            </p>
-          </div>
-        </section>
-
-        {/* ================= CENTER PANEL ================= */}
-        <section className="chat-panel">
-
-          <div className="chat-header">
-            <div>
-              <p>Onboarding Sequence</p>
-
-              {uiState === "upload" && (
-                <div className="upload-section">
-
-                  <h3>Generate Your Career Roadmap</h3>
-
-                  <p>
-                    Upload your curriculum for the most personalized roadmap,
-                    or generate one using your AI profile.
-                  </p>
-
-                  <label
-                    className={`upload-button ${uploading ? "disabled" : ""}`}
-                  >
-                    📄 Generate with Curriculum
-
-                    <input
-                      type="file"
-                      accept=".pdf,.md"
-                      hidden
-                      onChange={async (e) => {
-                        if (!e.target.files?.length) return;
-
-                        const file = e.target.files[0];
-
-                        setSelectedFile(file);
-
-                        await handleGenerateRoadmap(file);
-                      }}
-                    />
-                  </label>
-
-                  {selectedFile && (
-                    <span className="file-name">
-                      {selectedFile.name}
-                    </span>
-                  )}
-
-                  <div className="upload-divider">
-                    OR
-                  </div>
-
-                  <button
-                    className="generate-profile-button"
-                    disabled={uploading}
-                    onClick={() => handleGenerateRoadmap()}
-                  >
-                    ✨ Generate from AI Profile
-                  </button>
-
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="progress-track">
-            <div className="progress-glow"></div>
-          </div>
-
-          <div className="messages">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`message ${message.sender === "ai"
-                  ? "ai-message"
-                  : "user-message"
-                  }`}
-              >
-                {message.text}
-              </div>
-            ))}
-
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* ================= INTERVIEW ================= */}
-
-          {uiState === "interview" && (
-            <div className="chat-input-area">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your answer..."
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleContinue();
-                  }
-                }}
-              />
-
-              <button
-                type="button"
-                onClick={handleVoiceInput}
-                disabled={isListening || isSubmitting}
-              >
-                {isListening ? "🎤 Listening..." : "🎤"}
-              </button>
-
-              <button onClick={() => handleContinue()}>
-                Continue
-              </button>
-            </div>
-          )}
-
-          {/* ================= GENERATING ================= */}
-
-          {uiState === "generating" && (
-            <div className="generating-panel">
-
-              <h2>🧠 Future Visualization Engine</h2>
-
-              <p>Analyzing learner profile...</p>
-              <p>Reading curriculum...</p>
-              <p>Building personalized roadmap...</p>
-
-              <div className="spinner"></div>
-
-            </div>
-          )}
-
-        </section>
-
-        {/* ================= RIGHT PANEL ================= */}
-
-        <aside className="profile-status">
-
-          <h3>Career Profile</h3>
-
-          <div className="status-item complete">
-            ✓ Account Created
-          </div>
-
-          <div
-            className={
-              currentQuestion >= 1
-                ? "status-item complete"
-                : "status-item"
-            }
-          >
-            {currentQuestion >= 1 ? "✓" : "○"} Education
-          </div>
-
-          <div
-            className={
-              currentQuestion >= 3
-                ? "status-item complete"
-                : "status-item"
-            }
-          >
-            {currentQuestion >= 3 ? "✓" : "○"} Career Goal
-          </div>
-
-          <div
-            className={
-              currentQuestion >= 5
-                ? "status-item complete"
-                : "status-item"
-            }
-          >
-            {currentQuestion >= 5 ? "✓" : "○"} Skills
-          </div>
-
-          <div
-            className={
-              currentQuestion >= 7
-                ? "status-item complete"
-                : "status-item"
-            }
-          >
-            {currentQuestion >= 7 ? "✓" : "○"} Mentor Match
-          </div>
-
-          <div className="mission-card">
-            <p>Mission</p>
-
-            <h4>
-              Build a personalized roadmap from learner to
-              career-ready technologist.
-            </h4>
-          </div>
-
-
-        </aside>
-
-      </main>
-
-    </div>
-  );
+      );
 }
 
-export default AICoach;
+      export default AICoach;

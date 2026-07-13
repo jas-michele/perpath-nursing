@@ -392,7 +392,7 @@ function LearnersDashboard() {
                         Dashboard
                     </button>
 
-                    <button className="nav-button" type="button">
+                    <button className="nav-button" type="button"  onClick={() => navigate("/ai-coach")}>
                         <span>◉</span>
                         AI Coach
                     </button>
@@ -402,7 +402,7 @@ function LearnersDashboard() {
                         Career Quest
                     </button>
 
-                    <button className="nav-button" type="button">
+                    <button className="nav-button" type="button" onClick={() => navigate("/learner-hub")}>
                         <span>▤</span>
                         Learning Hub
                     </button>
@@ -429,12 +429,7 @@ function LearnersDashboard() {
                 </nav>
 
                 <div>
-                    <button
-                        className="ai-coach-button"
-                        onClick={() => navigate("/ai-coach")}
-                    >
-                         PerPath AI Chat
-                    </button>
+                  
                 </div>
 
                 <div className="sidebar-profile">
