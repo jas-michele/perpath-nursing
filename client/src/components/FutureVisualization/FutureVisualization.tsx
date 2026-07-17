@@ -1,4 +1,4 @@
-import { ReactFlow, Background, Controls, MiniMap } from "@xyflow/react";
+import { ReactFlow,  Controls,} from "@xyflow/react";
 import { mapRoadmapToFlow } from "./roadMapper";
 
 

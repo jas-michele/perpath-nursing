@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { startConversation, sendMessage, generateRoadmap } from "../services/aiCoachService";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import speechRecognitionService from "../services/speechRecognitionService";
 import textToSpeechService from "../services/textToSpeechService";
 import "./AICoach.css";

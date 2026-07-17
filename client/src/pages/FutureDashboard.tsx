@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import nebula from "../assets/space/nebula.png"
+
 
 import ProgressSidebar from "../components/sidebar/ProgressSidebar";
 import FutureVisualization from "../components/FutureVisualization/FutureVisualization";
