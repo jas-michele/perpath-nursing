@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route,  } from "react-router-dom";
 
+import LandingPage from "./pages/LandingPage.jsx"
 import Login from "./pages/Login";
 import GetStarted from "./pages/GetStarted";
 import AICoach from "./pages/AICoach";
@@ -36,6 +37,7 @@ function App() {
       </nav> */}
 
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/ai-coach" element={<AICoach />} />
