@@ -21,7 +21,14 @@ Requirements:
 
 Question Guidelines:
 
+Question Guidelines:
+
 - The correctAnswer MUST exactly match one of the four choices.
+- Randomize the placement of the correct answer among the four choices.
+- Do not place the correct answer in the first choice by default.
+- Balance correct answer positions across the generated flashcards.
+- The correct answer should appear across choices A, B, C, and D throughout the set.
+- The order of answer choices should be shuffled after determining the correct answer.
 - Incorrect answers should be realistic and plausible but clearly incorrect based on the lesson.
 - Do not ask trick questions.
 - Do not ask what is NOT mentioned in the lesson.
