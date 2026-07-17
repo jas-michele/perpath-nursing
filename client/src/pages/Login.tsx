@@ -1,6 +1,7 @@
 import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../services/authService"
+import { loginUser } from "../services/authService";
 import "./SignIn.css";
 
 function SignIn() {
@@ -17,7 +18,9 @@ function SignIn() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (event) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value, type, checked } = event.target;
 
     setFormData((previousData) => ({
@@ -25,8 +28,9 @@ function SignIn() {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
     try {
@@ -151,6 +155,12 @@ function SignIn() {
             </p>
 
             <form onSubmit={handleSubmit} className="signin-form">
+              {error && (
+                <div className="signin-error">
+                  {error}
+                </div>
+              )}
+
               <div className="signin-form-group">
                 <label htmlFor="email">Email Address</label>
 
@@ -209,7 +219,10 @@ function SignIn() {
                   <span>Remember me</span>
                 </label>
 
-                <button type="button" className="forgot-password-button">
+                <button
+                  type="button"
+                  className="forgot-password-button"
+                >
                   Forgot password?
                 </button>
               </div>
@@ -230,7 +243,6 @@ function SignIn() {
                 )}
               </button>
             </form>
-
             <div className="signin-divider">
               <span></span>
               <p>New to Per Path?</p>

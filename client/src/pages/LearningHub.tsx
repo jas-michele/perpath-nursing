@@ -40,20 +40,20 @@ function LearningHub() {
         }
     };
 
- 
+
 
     const learnerName = user?.firstName || "Learner";
 
-  const currentCard = flashcards[currentCardIndex];
+    const currentCard = flashcards[currentCardIndex];
 
-const correctIndex = currentCard
-    ? currentCard?.choices.indexOf(currentCard?.correctAnswer)
-    : -1;
+    const correctIndex = currentCard
+        ? currentCard?.choices.indexOf(currentCard?.correctAnswer)
+        : -1;
 
-const correctLetter =
-    correctIndex >= 0
-        ? String.fromCharCode(65 + correctIndex)
-        : "";
+    const correctLetter =
+        correctIndex >= 0
+            ? String.fromCharCode(65 + correctIndex)
+            : "";
 
 
 
@@ -74,10 +74,10 @@ const correctLetter =
         selectedAnswer !== null
             ? String.fromCharCode(65 + selectedAnswer)
             : "";
-  const answerIsCorrect =
-    currentCard &&
-    selectedAnswer !== null &&
-    currentCard?.choices[selectedAnswer] ===
+    const answerIsCorrect =
+        currentCard &&
+        selectedAnswer !== null &&
+        currentCard?.choices[selectedAnswer] ===
         currentCard?.correctAnswer;
 
     const resetFlashcard = () => {
@@ -122,7 +122,7 @@ const correctLetter =
         resetFlashcard();
     };
 
-    const handleAnswerSelection = (index) => {
+    const handleAnswerSelection = (index: number) => {
         setSelectedAnswer(index);
         setShowAnswer(true);
     };
@@ -360,7 +360,7 @@ const correctLetter =
                             </div>
                         </section>
 
-                       
+
 
                         <section className="dashboard-card learning-study-card">
                             <div className="learning-study-header">
@@ -465,8 +465,7 @@ const correctLetter =
                                                         const optionIsIncorrect =
                                                             showAnswer &&
                                                             optionIsSelected &&
-                                                            index !==
-                                                            currentCard?.correctAnswer;
+                                                            option !== currentCard?.correctAnswer;
 
                                                         return (
                                                             <button
@@ -799,9 +798,9 @@ const correctLetter =
                             </button>
                         </article>
 
-                        
 
-               
+
+
 
                         <article className="dashboard-card learning-side-card">
                             <h2>Weekly Goal</h2>
