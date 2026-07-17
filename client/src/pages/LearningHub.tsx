@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateFlashcards, getFlashcards } from "../services/flashcardService";
+import { generateFlashcards } from "../services/flashcardService";
 import { getCurrentUser } from "../services/authService";
 import "./LearningHub.css";
 
+type Flashcard = {
+    question: string;
+    options: string[];
+    correctAnswer: number;
+    explanation: string;
+};
 
+type FlashcardSet = {
+    cards: Flashcard[];
+};
 
 function LearningHub() {
     const navigate = useNavigate();
@@ -12,11 +21,10 @@ function LearningHub() {
     const [user, setUser] = useState<any>(null);
     const [activeTab, setActiveTab] = useState("flashcards");
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState(2);
+    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [showAnswer, setShowAnswer] = useState(true);
     const [bookmarked, setBookmarked] = useState(false);
-    const [fileName, setFileName] = useState("React Hooks.pdf");
-    const [flashcardSet, setFlashcardSet] = useState(null);
+    const [flashcardSet, setFlashcardSet] = useState<FlashcardSet | null>(null);
     const [lessonText, setLessonText] = useState("");
     const flashcards = flashcardSet?.cards || [];
 
@@ -47,9 +55,8 @@ function LearningHub() {
     const currentCard = flashcards[currentCardIndex];
 
     const correctIndex = currentCard
-        ? currentCard?.choices.indexOf(currentCard?.correctAnswer)
+        ? currentCard.correctAnswer
         : -1;
-
     const correctLetter =
         correctIndex >= 0
             ? String.fromCharCode(65 + correctIndex)
@@ -77,8 +84,7 @@ function LearningHub() {
     const answerIsCorrect =
         currentCard &&
         selectedAnswer !== null &&
-        currentCard?.choices[selectedAnswer] ===
-        currentCard?.correctAnswer;
+        selectedAnswer === currentCard.correctAnswer;
 
     const resetFlashcard = () => {
         setSelectedAnswer(null);
@@ -447,7 +453,7 @@ function LearningHub() {
                                             <h2>{currentCard?.question}</h2>
 
                                             <div className="learning-answer-list">
-                                                {currentCard.choices.map(
+                                                {currentCard.options.map(
                                                     (option, index) => {
                                                         const letter =
                                                             String.fromCharCode(
@@ -459,13 +465,12 @@ function LearningHub() {
 
                                                         const optionIsCorrect =
                                                             showAnswer &&
-                                                            option ===
-                                                            currentCard?.correctAnswer;
+                                                            index === currentCard.correctAnswer;
 
                                                         const optionIsIncorrect =
                                                             showAnswer &&
                                                             optionIsSelected &&
-                                                            option !== currentCard?.correctAnswer;
+                                                            index !== currentCard.correctAnswer;
 
                                                         return (
                                                             <button

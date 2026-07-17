@@ -1,67 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../services/authService";
-import { getRoadmap, completeMilestone } from "../services/roadmapService";
+import { getRoadmap } from "../services/roadmapService";
 import { useNavigate } from "react-router-dom";
 import "./LearnerDashboard.css";
 
-const roadmap = [
-    {
-        id: 1,
-        icon: "⚑",
-        title: "Start",
-        status: "Complete",
-        type: "complete",
-    },
-    {
-        id: 2,
-        icon: "JS",
-        title: "JavaScript",
-        status: "Complete",
-        type: "complete",
-    },
-    {
-        id: 3,
-        icon: "⚛",
-        title: "React",
-        status: "Complete",
-        type: "complete",
-    },
-    {
-        id: 4,
-        icon: "EX",
-        title: "Express",
-        status: "In Progress",
-        type: "active",
-    },
-    {
-        id: 5,
-        icon: "⬡",
-        title: "Node.js",
-        status: "Locked",
-        type: "locked",
-    },
-    {
-        id: 6,
-        icon: "▣",
-        title: "Portfolio",
-        status: "Locked",
-        type: "locked",
-    },
-    {
-        id: 7,
-        icon: "♙",
-        title: "Interview",
-        status: "Locked",
-        type: "locked",
-    },
-    {
-        id: 8,
-        icon: "🚀",
-        title: "Offer",
-        status: "Locked",
-        type: "locked",
-    },
-];
 
 const opportunities = [
     {
@@ -121,29 +63,6 @@ const mentors = [
     },
 ];
 
-const resources = [
-    {
-        id: 1,
-        icon: "⚛",
-        title: "React Docs",
-        description: "Official documentation",
-        action: "Continue",
-    },
-    {
-        id: 2,
-        icon: "MDN",
-        title: "MDN Web Docs",
-        description: "Web development resources",
-        action: "Explore",
-    },
-    {
-        id: 3,
-        icon: "⌁",
-        title: "FreeCodeCamp",
-        description: "Hands-on projects",
-        action: "Start",
-    },
-];
 
 const achievements = [
     {
@@ -188,7 +107,11 @@ const tasks = [
 
 const progressPoints = [15, 28, 36, 49, 31, 58, 42, 29, 53, 77, 81, 88, 100];
 
-function ProgressRing({ value }) {
+type ProgressRingProps = {
+    value: number;
+};
+
+function ProgressRing({ value }: ProgressRingProps) {
     const radius = 54;
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (value / 100) * circumference;
@@ -312,7 +235,7 @@ function WeeklyChart() {
 }
 
 function LearnersDashboard() {
- 
+
 
     const [user, setUser] = useState<any>(null);
     const [userRoadmap, setUserRoadmap] = useState<any>(null);
@@ -323,12 +246,12 @@ function LearnersDashboard() {
     const learnerName = user?.firstName ?? "Learner";
 
     const loadDashboard = async () => {
-     
+
         try {
             const userData = await getCurrentUser();
-           
+
             const roadmapData = await getRoadmap();
-           
+
 
             setUser(userData);
             setUserRoadmap(roadmapData);
@@ -340,7 +263,7 @@ function LearnersDashboard() {
     };
 
     useEffect(() => {
-       
+
         loadDashboard();
     }, []);
 
@@ -392,7 +315,7 @@ function LearnersDashboard() {
                         Dashboard
                     </button>
 
-                    <button className="nav-button" type="button"  onClick={() => navigate("/ai-coach")}>
+                    <button className="nav-button" type="button" onClick={() => navigate("/ai-coach")}>
                         <span>◉</span>
                         AI Coach
                     </button>
@@ -429,7 +352,7 @@ function LearnersDashboard() {
                 </nav>
 
                 <div>
-                  
+
                 </div>
 
                 <div className="sidebar-profile">
@@ -472,7 +395,7 @@ function LearnersDashboard() {
                             AI Online
                         </div>
 
-                        <button className="header-icon-button" type="button" 
+                        <button className="header-icon-button" type="button"
                             onClick={() => navigate("/")}
                         >
                             ◌
@@ -573,29 +496,35 @@ function LearnersDashboard() {
                     </div>
 
                     <div className="roadmap-wrapper">
-                        {userRoadmap?.milestones.map((item, index) => (
-                            <React.Fragment key={item.id}>
-                                <div
-                                    className={`roadmap-item ${item.completed ? "complete" : "active"
-                                        }`}
-                                >
-                                    <div className="roadmap-node">
-                                        {index + 1}
-                                    </div>
-                                    <strong>{item.title}</strong>
-                                    <span>
-                                        {item.completed ? "Completed" : "In Progress"}
-                                    </span>
-                                </div>
-
-                                {index < (userRoadmap?.milestones?.length) - 1 && (
+                        {userRoadmap?.milestones.map(
+                            (item: any, index: number) => (
+                                <React.Fragment key={item.id}>
                                     <div
-                                        className={`roadmap-line ${index < 3 ? "line-complete" : ""
+                                        className={`roadmap-item ${item.completed ? "complete" : "active"
                                             }`}
-                                    />
-                                )}
-                            </React.Fragment>
-                        ))}
+                                    >
+                                        <div className="roadmap-node">
+                                            {index + 1}
+                                        </div>
+
+                                        <strong>{item.title}</strong>
+
+                                        <span>
+                                            {item.completed
+                                                ? "Completed"
+                                                : "In Progress"}
+                                        </span>
+                                    </div>
+
+                                    {index < (userRoadmap?.milestones?.length ?? 0) - 1 && (
+                                        <div
+                                            className={`roadmap-line ${index < 3 ? "line-complete" : ""
+                                                }`}
+                                        />
+                                    )}
+                                </React.Fragment>
+                            )
+                        )}
                     </div>
 
                     <button

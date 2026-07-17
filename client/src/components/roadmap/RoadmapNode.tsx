@@ -2,7 +2,7 @@ import "./RoadmapNode.css";
 import {
   CheckCircle2,
   Circle,
-  Clock3,
+  
 } from "lucide-react";
 
 type RoadmapNodeProps = {
